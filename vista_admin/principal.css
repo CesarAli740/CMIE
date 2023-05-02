@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto:wght@100&display=swap');
+:root{font-family: 'Roboto', sans-serif;}
+/* Estilos para los botones */
+.boton {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+.titulo{
+  border-radius: 5px;
+  margin: 10%;
+  padding:1px;
+  text-align: center;
+  background-color: #e5e6c8;
+}
+
+/* Estilos para el contenedor de los botones */
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Estilos para los botones en pantalla grande */
+@media screen and (min-width: 600px) {
+  .boton {
+    width: 40%;
+    margin: 20px;
+  }
+}
+
+/* Estilos para los botones en pantalla pequeña */
+@media screen and (max-width: 599px) {
+  .boton {
+    width: 80%;
+  }
+}
