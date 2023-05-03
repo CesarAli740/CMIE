@@ -43,7 +43,7 @@ if ($validar == null || $validar = '') {
                     <div class="col-sm-6">
                         <form action="../includes/_function_indicador.php" method="POST">
                             <input type="hidden" name="accion" value="eliminar_registro">
-                            <input type="hidden" name="id_factores" value="<?php echo $_GET['id_factores']; ?>">
+                            <input type="hidden" name="id_unidad" value="<?php echo $_GET['id']; ?>">
                             <input type="submit" name="" value="Eliminar" class=" btn btn-danger">
                             <a href="./factor_medicion.php" class="btn btn-success">Cancelar</a>
                     </div>

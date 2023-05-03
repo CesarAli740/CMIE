@@ -42,14 +42,14 @@ if ($validar == null || $validar = '') {
 </style>
 
 <body id="page-top">
-
-
     <form action="../includes/validar_factor.php" method="POST">
         <div id="login">
             <div class="container">
                 <div id="login-row" class="row justify-content-center align-items-center">
                     <div id="login-column" class="col-md-6">
                         <div id="login-box" class="col-md-12">
+
+                            <input type="hidden" name="id_factores" value="<?php echo $_GET['id'] ?>">
 
                             <br>
                             <br>
@@ -59,6 +59,22 @@ if ($validar == null || $validar = '') {
                                 <input type="text" id="factores" name="factores" class="form-control" required>
                             </div>
                             <br>
+                            <label for="nota" class="form-label">Nota: </label>
+                            <div class="form-group">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6 col-md-4">
+                                            <select class="selectpicker" type="number" id="nota" name="nota">
+                                                <option value="0">NULA</option>
+                                                <option value="25">BAJA</option>
+                                                <option value="50">MEDIA</option>
+                                                <option value="75">MAYOR</option>
+                                                <option value="100">TOTAL</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mb-3">
 
                                 <input type="submit" value="Guardar" class="btn btn-success" name="registrar_factor">

@@ -13,9 +13,9 @@ if ($validar == null || $validar = '') {
 
 }
 
-$id_factores = $_GET['id'];
+$id_unidad = $_GET['id'];
 $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-$consulta = "SELECT * FROM unidadejer WHERE id_factores = $id_factores";
+$consulta = "SELECT * FROM unidadejer WHERE id_unidad = $id_unidad";
 $resultado = mysqli_query($conexion, $consulta);
 $dimension = mysqli_fetch_assoc($resultado);
 
@@ -62,12 +62,30 @@ $dimension = mysqli_fetch_assoc($resultado);
                             <br>
                             <h3 class="text-center">Editar Indicadores</h3>
                             <div class="form-group">
-                                <label for="factores"
-                                    class="form-label">Indicador:</label>
-                                <input type="text" id_factores="factores" name="factores" class="form-control"
+                                <label for="factores" class="form-label">Indicador:</label>
+                                <input type="text" id_unidad="factores" name="factores" class="form-control"
                                     value="<?php echo $unidadejer['factores']; ?>" required>
                                 <input type="hidden" name="accion" value="editar_registro">
-                                <input type="hidden" name="id_factores" value="<?php echo $id_factores ?>">
+                                <input type="hidden" name="id_unidad" value="<?php echo $id_unidad ?>">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                            <label for="nota" class="form-label">Nota: </label>
+                            <div class="form-group">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-6 col-md-4">
+                                            <select class="selectpicker" type="number" id="nota" name="nota">
+                                                <option value="0">NULA</option>
+                                                <option value="25">BAJA</option>
+                                                <option value="50">MEDIA</option>
+                                                <option value="75">MAYOR</option>
+                                                <option value="100">TOTAL</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                             <br>
 

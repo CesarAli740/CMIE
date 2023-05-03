@@ -11,13 +11,16 @@ if (isset($_POST['accion'])){
             case 'eliminar_registro';
             eliminar_registro();
             break;
+            case 'nota';
+            nota();
+            break;
 		}
 	}
 
     function editar_registro() {
 		$conexion=mysqli_connect("localhost","root","","CMIE");
 		extract($_POST);
-		$consulta="UPDATE unidadejer SET factores = '$factores' WHERE id_factores = '$id_factores' ";
+		$consulta="UPDATE unidadejer SET factores = '$factores', nota = '$nota' WHERE id_unidad = '$id_unidad' ";
 
 		mysqli_query($conexion, $consulta);
 
@@ -28,11 +31,19 @@ if (isset($_POST['accion'])){
 function eliminar_registro() {
     $conexion=mysqli_connect("localhost","root","","CMIE");
     extract($_POST);
-    $id_factores= $_POST['id_factores'];
-    $consulta= "DELETE FROM unidadejer WHERE id_factores= '$id_factores' ";
+    $id_unidad= $_POST['id_unidad'];
+    $consulta= "DELETE FROM unidadejer WHERE id_unidad= '$id_unidad' ";
     mysqli_query($conexion, $consulta);
     header('Location: ../vista_admin/factor_medicion.php');
 
+}
+
+function nota(){
+    $conexion=mysqli_connect("localhost","root","","CMIE");
+    extract($_POST);
+    $consulta="UPDATE unidadejer SET nota = '$nota' WHERE id_unidad = '$id_unidad' ";
+    mysqli_query($conexion, $consulta);
+    header('Location: ../vista_admin/factor_medicion.php');
 }
 
 
