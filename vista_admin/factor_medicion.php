@@ -29,7 +29,11 @@ if ($validar == null || $validar = '') {
 
 
 	<body>
-
+		<br>
+    <div>
+      <a class="btn btn-success" href="./agregarFactores.php">Nueva mision
+      <i class="fa fa-plus"></i> </a>
+    </div>
 		<br><br>
 		<div class="container">
 			<table class="table table-bordered table-dark table-striped">
