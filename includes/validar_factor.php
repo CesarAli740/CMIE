@@ -13,4 +13,22 @@ if (isset($_POST['registrar_factor'])) {
     header('Location: ../vista_admin/factor_medicion.php');
   }
 }
+
+
+
+if (isset($_POST['subir_nota'])) {
+  extract($_POST);
+  for ($x = 1; $x <= $numero; $x++) {
+    if (isset($_POST["nota" . $x])) {
+      $Pro = $_POST["nota" . $x];
+      $consulta = "UPDATE unidadejer  SET nota = $Pro WHERE tipo = 2";
+      mysqli_query($conexion, $consulta);
+    }
+  }
+  mysqli_close($conexion);
+  header('Location: ../vista_admin/factor_medicion.php');
+}
+
 ?>
+
+

@@ -69,25 +69,6 @@ $dimension = mysqli_fetch_assoc($resultado);
                                 <input type="hidden" name="id_unidad" value="<?php echo $id_unidad ?>">
                             </div>
                             <br>
-                            <div class="form-group">
-                            <label for="nota" class="form-label">Nota: </label>
-                            <div class="form-group">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-6 col-md-4">
-                                            <select class="selectpicker" type="number" id="nota" name="nota">
-                                                <option value="0">NULA</option>
-                                                <option value="25">BAJA</option>
-                                                <option value="50">MEDIA</option>
-                                                <option value="75">MAYOR</option>
-                                                <option value="100">TOTAL</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <br>
 
                             <div class="mb-3">
 
