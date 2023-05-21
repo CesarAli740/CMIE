@@ -13,6 +13,7 @@ if (isset($_POST['accion'])){
             break;
             case 'nota';
             nota();
+        
             break;
 		}
 	}
@@ -20,7 +21,7 @@ if (isset($_POST['accion'])){
     function editar_registro() {
 		$conexion=mysqli_connect("localhost","root","","CMIE");
 		extract($_POST);
-		$consulta="UPDATE unidadejer SET factores = '$factores', nota = '$nota' WHERE id_unidad = '$id_unidad' ";
+		$consulta="UPDATE unidadejer SET factores = '$factores' WHERE id_unidad = '$id_unidad' ";
 
 		mysqli_query($conexion, $consulta);
 
