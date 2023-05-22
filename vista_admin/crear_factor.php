@@ -4,6 +4,8 @@ session_start();
 error_reporting(0);
 
 $validar = $_SESSION['nombre'];
+$unidad = $_SESSION['id_unidad'];
+
 
 if ($validar == null || $validar = '') {
     header("Location: ../includes/login.php");
@@ -53,7 +55,7 @@ if ($validar == null || $validar = '') {
 
                             <br>
                             <br>
-                            <h3 class="text-center">Registro Factor</h3>
+                            <h3 class="text-center">Registro Factor </h3>
                             <div class="form-group">
                                 <label for="factores" class="form-label">Factor: </label>
                                 <input type="text" id="factores" name="factores" class="form-control" required>

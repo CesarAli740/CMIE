@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+error_reporting(0);
+
+$validar = $_SESSION['nombre'];
+$unidad = $_SESSION['id_unidad'];
+
+if ($validar == null || $validar = '') {
+  header("Location: ../includes/login.php");
+  die();
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -12,11 +26,11 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 
-		function actualizarValor(valor, factores2) {
+		function actualizarValor(valor, factores2, unidad) {
 			$.ajax({
 				url: './actualizar.php',
 				method: 'POST',
-				data: { valor: valor, factores2: factores2 },
+				data: { valor: valor, factores2: factores2, unidad: unidad },
 				success: function (response) {
 					console.log(response);
 				},
@@ -26,11 +40,11 @@
 			});
 		}
 
-		function actualizarValor2(valor, factores2) {
+		function actualizarValor2(valor, factores2, unidad) {
 			$.ajax({
 				url: './actualizar2.php',
 				method: 'POST',
-				data: { valor: valor, factores2: factores2 },
+				data: { valor: valor, factores2: factores2, unidad: unidad },
 				success: function (response) {
 					console.log(response);
 				},
@@ -144,7 +158,7 @@ if ($validar == null || $validar = '') {
 											<div class="row">
 												<div class="col-6 col-md-4">
 													<select class="selectpicker"
-														onchange="actualizarValor2(this.value, '<?php echo $fila['factores']; ?>')">
+														onchange="actualizarValor2(this.value, '<?php echo $fila['factores']; ?>', <?php echo $unidad ?>)">
 														<option value="0">NULA</option>
 														<option value="100">TOTAL</option>
 													</select>
@@ -269,7 +283,7 @@ if ($validar == null || $validar = '') {
 													}
 												</style>
 												<select class="selectpicker" 
-													onchange="actualizarValor(this.value, '<?php echo $fila['factores']; ?>')">
+													onchange="actualizarValor(this.value, '<?php echo $fila['factores']; ?>', <?php echo $unidad ?>)">
 
 													<option value="0">NULA</option>
 													<option value="25">BAJA</option>

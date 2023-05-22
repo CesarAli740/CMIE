@@ -13,7 +13,6 @@ if (isset($_POST['accion'])){
             break;
             case 'nota';
             nota();
-        
             break;
 		}
 	}

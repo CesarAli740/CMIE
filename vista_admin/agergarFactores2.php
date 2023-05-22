@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+error_reporting(0);
+
+$validar = $_SESSION['nombre'];
+$unidad = $_SESSION['id_unidad'];
+
+if ($validar == null || $validar = '') {
+  header("Location: ../includes/login.php");
+  die();
+}
+
+?>
 <?php include '../header.php'; ?>
 <?php
 
@@ -13,12 +27,12 @@ if (isset($_POST['submit'])) {
   for ($j = 1; $j <= $cant; $j++) {
     if (isset($_POST["prod" . $j])) {
       $nombre = $_POST["prod" . $j];
-      $consulta2 = "INSERT INTO unidadejer (factores, tipo) VALUES ('$nombre', '2')";
+      $consulta2 = "INSERT INTO unidadejer (factores, id_factores, tipo) VALUES ('$nombre', '$unidad', '2')";
       mysqli_query($conexion, $consulta2);
     }
   }
 }
-?>br
+?><br>
 
 <center>
   <div>
@@ -28,44 +42,46 @@ if (isset($_POST['submit'])) {
 </center>
 <br><br>
 <div class="container">
-		<table class="table table-bordered table-dark table-striped">
-			<thead class="thead-dark">
-				<tr>
-					<th>
-						<center>Grado del Factor a ser Medido</center>
-					</th>
-				</tr>
-			</thead>
-		</table>
-	</div>
+  <table class="table table-bordered table-dark table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>
+          <center>Grado del Factor a ser Medido</center>
+        </th>
+      </tr>
+    </thead>
+  </table>
+</div>
 <div class="input-group input-group-sm mb-3">
-<form id="form2" name="form2" method="post">
-  N. de Factores a Registrar:
-  <input name="cant" type="number" min="1" id="cant" value="<?php echo $cant; ?>" />
-  <input type="submit" name="submit" value="Ok" />
-</form>
+  <form id="form2" name="form2" method="post">
+    N. de Factores a Registrar:
+    <input name="cant" type="number" min="1" id="cant" value="<?php echo $cant; ?>" />
+    <input type="submit" name="submit" value="Ok" />
+  </form>
 </div>
 
 <?php if ($cant > 0) { ?>
   <form method="POST">
-		<div class="container">
-    <table width="auto" border="0" class="table table-responsive-sm table-bordered table-dark table-striped">
-    <thead class="thead-dark">  
-    <tr>
-        <td>No.</td>
-        <td>Factores:</td>
-      </tr>
-      <?php for ($j = 1; $j <= $cant; $j++) { ?>
-        <tr>
-          <td><?php echo $j; ?></td>
-          <td><input type="text" name="prod<?php echo $j; ?>" required="required"></td>
-          <input name="num<?php echo $j; ?>" type="hidden">
-          <input name="cant" type="hidden" value="<?php echo $cant; ?>" />
-        </tr>
-      <?php } ?>
-    </thead>
-    </table>
-          <button type="submit" name="submit">Guardar</button>
-      </div>
+    <div class="container">
+      <table width="auto" border="0" class="table table-responsive-sm table-bordered table-dark table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <td>No.</td>
+            <td>Factores:</td>
+          </tr>
+          <?php for ($j = 1; $j <= $cant; $j++) { ?>
+            <tr>
+              <td>
+                <?php echo $j; ?>
+              </td>
+              <td><input type="text" name="prod<?php echo $j; ?>" required="required"></td>
+              <input name="num<?php echo $j; ?>" type="hidden">
+              <input name="cant" type="hidden" value="<?php echo $cant; ?>" />
+            </tr>
+          <?php } ?>
+        </thead>
+      </table>
+      <button type="submit" name="submit">Guardar</button>
+    </div>
   </form>
 <?php } ?>
