@@ -93,7 +93,7 @@ if ($validar == null || $validar = '') {
                         <option value="4">Evaluador - P3</option>
                         <option value="5">Evaluador - P4</option>
                         <option value="6">Evaluador - P5</option>
-                        <option value="7">Evaluador - P6</option>
+                        <option value="7">Evaluador - DDHH</option>
                         <option value="8">Comandante de la Unidad Evaluada</option>
                       </select>
                     </div>

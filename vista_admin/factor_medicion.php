@@ -5,10 +5,11 @@ error_reporting(0);
 
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
+$rol = $_SESSION['rol'];
 
 if ($validar == null || $validar = '') {
-  header("Location: ../includes/login.php");
-  die();
+	header("Location: ../includes/login.php");
+	die();
 }
 
 ?>
@@ -140,7 +141,7 @@ if ($validar == null || $validar = '') {
 				<?php
 
 				$conexion = mysqli_connect("localhost", "root", "", "CMIE");
-				$SQL = "SELECT unidadejer.id_unidad, unidadejer.factores, unidadejer.nota, unidadejer.id_factores FROM unidadejer WHERE unidadejer.tipo = 1	 ";
+				$SQL = "SELECT unidadejer.id_unidad, unidadejer.factores, unidadejer.nota, unidadejer.id_factores FROM unidadejer WHERE unidadejer.tipo = 1 AND unidadejer.rol = '$rol' AND unidadejer.id_factores = '$unidad';";
 				$dato = mysqli_query($conexion, $SQL);
 
 				if ($dato->num_rows > 0) {
@@ -159,6 +160,7 @@ if ($validar == null || $validar = '') {
 												<div class="col-6 col-md-4">
 													<select class="selectpicker"
 														onchange="actualizarValor2(this.value, '<?php echo $fila['factores']; ?>', <?php echo $unidad ?>)">
+														<option value="0">-- Seleccionar --</option>
 														<option value="0">NULA</option>
 														<option value="100">TOTAL</option>
 													</select>
@@ -173,7 +175,9 @@ if ($validar == null || $validar = '') {
 										<i class="fas fa-edit"></i> </a>
 									<a class="btn btn-danger"
 										href="./eliminar_indicador.php?id=<?php echo $fila['id_unidad'] ?>">
-										<i class="fas fa-trash"></i></a><!-- 
+										<i class="fas fa-trash"></i></a>
+
+									<!-- 
 									<a class="btn btn-success" href="./crear_factor.php?id=<?php echo $fila['id_factores'] ?>">
 										<i class="fas fa-plus"></i></a> -->
 								</td>
@@ -236,7 +240,7 @@ if ($validar == null || $validar = '') {
 			<?php
 
 			$conexion = mysqli_connect("localhost", "root", "", "CMIE");
-			$SQL = "SELECT unidadejer.id_unidad, unidadejer.factores, unidadejer.nota, unidadejer.id_factores FROM unidadejer WHERE unidadejer.tipo = 2 ";
+			$SQL = "SELECT unidadejer.id_unidad, unidadejer.factores, unidadejer.nota, unidadejer.id_factores FROM unidadejer WHERE unidadejer.tipo = 2 AND unidadejer.rol = '$rol' AND unidadejer.id_factores = '$unidad';";
 			$dato = mysqli_query($conexion, $SQL);
 
 
@@ -254,7 +258,6 @@ if ($validar == null || $validar = '') {
 										<div class="row">
 											<div class="col-6 col-md-4">
 												<style>
-													
 													.selectpicker {
 														appearance: none;
 														-webkit-appearance: none;
@@ -262,9 +265,13 @@ if ($validar == null || $validar = '') {
 														padding: 8px 38px 8px 10px;
 														border: 1px solid transparent;
 														border-radius: 4px;
-														color:#ffffff;
+														color: #ffffff;
 														background-color: #212529;
+														background-repeat: no-repeat;
+														background-position: right center;
 														cursor: pointer;
+														font-size: 14px;
+														width: auto;
 													}
 
 													.selectpicker::-ms-expand {
@@ -282,9 +289,9 @@ if ($validar == null || $validar = '') {
 														background-color: #ffffff;
 													}
 												</style>
-												<select class="selectpicker" 
+												<select class="selectpicker"
 													onchange="actualizarValor(this.value, '<?php echo $fila['factores']; ?>', <?php echo $unidad ?>)">
-
+													<option value="0">-- Seleccionar --</option>
 													<option value="0">NULA</option>
 													<option value="25">BAJA</option>
 													<option value="50">MEDIA</option>

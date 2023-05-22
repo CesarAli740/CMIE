@@ -5,6 +5,7 @@ error_reporting(0);
 
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
+$rol = $_SESSION['rol'];
 
 if ($validar == null || $validar = '') {
   header("Location: ../includes/login.php");
@@ -27,7 +28,7 @@ if (isset($_POST['submit'])) {
   for ($j = 1; $j <= $cant; $j++) {
     if (isset($_POST["prod" . $j])) {
       $nombre = $_POST["prod" . $j];
-      $consulta2 = "INSERT INTO unidadejer (factores, id_factores, tipo) VALUES ('$nombre', '$unidad', '2')";
+      $consulta2 = "INSERT INTO unidadejer (factores, id_factores, tipo, rol) VALUES ('$nombre', '$unidad', '2', '$rol')";
       mysqli_query($conexion, $consulta2);
     }
   }

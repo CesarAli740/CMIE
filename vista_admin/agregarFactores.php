@@ -5,6 +5,7 @@ error_reporting(0);
 
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
+$rol = $_SESSION['rol'];
 
 if ($validar == null || $validar = '') {
   header("Location: ../includes/login.php");
@@ -28,7 +29,7 @@ if (isset($_POST['submit'])) {
   for ($x = 1; $x <= $cantidad; $x++) {
     if (isset($_POST["producto" . $x])) {
       $Pro = $_POST["producto" . $x];
-      $consulta = "INSERT INTO unidadejer (factores, id_factores, tipo) VALUES ('$Pro', '$unidad', '1')";
+      $consulta = "INSERT INTO unidadejer (factores, id_factores, tipo, rol) VALUES ('$Pro', '$unidad', '1', '$rol')";
       mysqli_query($conexion, $consulta);
     }
   }
@@ -36,7 +37,7 @@ if (isset($_POST['submit'])) {
 ?><br>
 <center>
   <div>
-    <a class="btn btn-success" href="./agergarFactores2.php">Grado del Factor a ser Medido 
+    <a class="btn btn-success" href="./agergarFactores2.php">Grado del Factor a ser Medido
       <i class="fa fa-plus"></i> </a>
   </div>
 </center>

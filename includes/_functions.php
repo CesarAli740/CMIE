@@ -373,10 +373,10 @@ function acceso_user()
   $consulta = "SELECT * FROM user WHERE nombre='$nombre' AND password='$password'";
   $resultado = mysqli_query($conexion, $consulta);
   $filas = mysqli_fetch_array($resultado);
-
-  $id_unidad = $filas['id_unidad'];
   
   $_SESSION['id_unidad'] = $filas['id_unidad'];
+  $_SESSION['rol'] = $filas['rol'];
+  $_SESSION['unidad'] = $filas['unidad'];
 
   if ($filas['rol'] == 1) { //admin
 
