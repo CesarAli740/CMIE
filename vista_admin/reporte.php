@@ -1,4 +1,3 @@
-<?php include '../header.php'; ?>
 <?php
 
 session_start();
@@ -15,22 +14,54 @@ if ($validar == null || $validar = '') {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require('../fpdf185/fpdf.php');
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
-        integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
-        crossorigin="anonymous"></script>
-</head>
+class PDF extends FPDF
+{
+    function Header()
+    {
+        // Encabezado del PDF
+        $this->SetFont('Arial', 'B', 12);
+        $this->Cell(0, 10, 'Reporte de Notas', 0, 1, 'C');
+        $this->Ln(5);
+    }
 
-<body>
-    
-    <?php 
+    function Footer()
+    {
+        // Pie de página del PDF
+        $this->SetY(-15);
+        $this->SetFont('Arial', 'I', 8);
+        $this->Cell(0, 10, 'Página ' . $this->PageNo() . ' de {nb}', 0, 0, 'C');
+    }
+
+    function ChapterTitle($title)
+    {
+        // Título del capítulo
+        $this->SetFont('Arial', '', 12);
+        $this->Cell(0, 10, $title, 0, 1, 'L');
+        $this->Ln(4);
+    }
+
+    function ChapterBody($header, $data)
+    {
+        // Cuerpo del capítulo (tabla)
+        $this->SetFont('Arial', 'B', 10);
+        foreach ($header as $col) {
+            $this->Cell(40, 10, $col, 1, 0, 'C');
+        }
+        $this->Ln();
+
+        $this->SetFont('Arial', '', 10);
+        foreach ($data as $row) {
+            foreach ($row as $col) {
+                $this->Cell(40, 10, $col, 1, 0, 'C');
+            }
+            $this->Ln();
+        }
+        $this->Ln(4);
+    }
+}
     
     $mediafinal_array = array(); // Arreglo para almacenar los valores de $mediafinal
     $o = 2;
@@ -70,9 +101,60 @@ if ($validar == null || $validar = '') {
         echo "No se encontraron resultados.";
     }
                 $o++; }
-                ?>
-    
-    
+                
+$pdf = new PDF();
+$pdf->AliasNbPages();
+$pdf->AddPage();
+
+// Título del reporte
+$pdf->ChapterTitle('NOTA FINAL');
+
+// Contenido de la nota final
+$pdf->SetFont('Arial', '', 16);
+$pdf->Cell(0, 10, 'UNIDAD EVALUADA: ' . $_SESSION['unidad'], 0, 1, 'C');
+$pdf->Ln(4);
+
+$pdf->SetFont('Arial', 'B', 40);
+$pdf->Cell(0, 20, $mediatotalfinal, 0, 1, 'C');
+$pdf->Ln(10);
+
+// Tabla de resumen general
+$pdf->ChapterTitle('RESUMEN GENERAL');
+
+$header = array('DIMENSIONES', 'NOTA');
+$data = array();
+$c = 2;
+while ($c < 8) {
+    $dimen = '';
+    if ($c == 2) {
+        $dimen = 'PERSONAL';
+    } else if ($c == 3) {
+        $dimen = 'INTELIGENCIA';
+    } else if ($c == 4) {
+        $dimen = 'OPERACIONES';
+    } else if ($c == 5) {
+        $dimen = 'LOGISTICA';
+    } else if ($c == 6) {
+        $dimen = 'ACC. CIVICA';
+    } else if ($c == 7) {
+        $dimen = 'DERECHOS HUMANOS';
+    }
+
+    $nota = $mediafinal_array[$c - 2];
+
+    $data[] = array($dimen, $nota);
+    $c++;
+}
+
+$pdf->ChapterBody($header, $data);
+
+// Generar el PDF al hacer clic en el botón
+if (isset($_POST['generar_pdf'])) {
+    $pdf->Output();
+}
+?>
+
+<body>
     <div class="container">
         <table class="table table-bordered table-dark table-striped">
             <thead class="thead-dark">
@@ -122,66 +204,25 @@ if ($validar == null || $validar = '') {
                     <th scope="col">
                         <center>NOTA</center>
                     </th>
-                    <th scope="col">
-                        <center>VER MÁS</center>
-                    </th>
                 </tr>
                 <?php
-                $c = 2;
-                
-                while ($c < 8) {
-                    $dimen = '';
-                    if ($c == 2) {
-                        $dimen = 'PERSONAL';
-                    } else if ($c == 3) {
-                        $dimen = 'INTELIGENCIA';
-                    } else if ($c == 4) {
-                        $dimen = 'OPERACIONES';
-                    } else if ($c == 5) {
-                        $dimen = 'LOGISTICA';
-                    } else if ($c == 6) {
-                        $dimen = 'ACC. CIVICA';
-                    } else if ($c == 7) {
-                        $dimen = 'DERECHOS HUMANOS';
-                    }
+                foreach ($data as $row) {
                     ?>
                     <tr>
                         <td scope="col">
                             <center>
-                                <?php echo $dimen; ?>
+                                <?php echo $row[0]; ?>
                             </center>
                         </td>
                         <td scope="col">
-
-                            <style>
-                                p.notafinal {
-                                    font-size: 20px;
-                                }
-                            </style>
                             <center>
-                                <p class="notafinal">
-                                    <?php echo $mediafinal_array[$c-2]; ?>
-                                </p>
+                                <?php echo $row[1]; ?>
                             </center>
-
-
-                        </td>
-                        <td scope="col">
-                            <center><a class="btn btn-success"
-                                    href="./eliminar_indicador.php?id=<?php echo $fila['id_unidad'] ?>">
-                                    <i class="fas fa-eye"></i></a></center>
                         </td>
                     </tr>
-                    <?php
-                    $c++;
+                <?php
                 }
                 ?>
             </thead>
         </table>
     </div>
-
-    <form method="post" action="./reporte.php">
-        <input type="submit" name="generar_pdf" value="Generar PDF">
-    </form>
-
-</html>

@@ -382,9 +382,9 @@ function acceso_user()
 
     header("Location: ../vista_admin/principal.php");
 
-  } else if ($filas['rol'] == 2) { //lector
+  } else if ($filas['rol'] == 2 or $filas['rol'] == 3 or $filas['rol'] == 4 or $filas['rol'] == 5 ) { //lector
 
-    header("Location: ../views/lector.php");
+    header("Location: ../vista_admin/principal.php");
 
   } else {
 

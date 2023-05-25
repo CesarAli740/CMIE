@@ -333,11 +333,6 @@ if (isset($_POST['registrar'])) {
 
     mysqli_query($conexion, $consulta);
 
-    
-    $consulta2 = "INSERT INTO unidadejer (id_unidad, factores, nota, id_factores)
-    VALUES ('', NULL, NULL, '$id_unidad')";
-
-    mysqli_query($conexion, $consulta2);
 
     mysqli_close($conexion);
 
