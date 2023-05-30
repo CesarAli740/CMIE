@@ -97,7 +97,7 @@ if ($validar == null || $validar = '') {
 					<tr>
 						<td>
 							<center>
-								<?php echo $_SESSION['nombre']; ?> - Editando PERSONAL
+								Editando: <strong><?php echo $_SESSION['nombre']; ?> </strong>
 							</center>
 						</td>
 					</tr>

@@ -50,15 +50,32 @@ if (isset($_POST['submit'])) {
           <center>Presencia o Ausencia</center>
         </th>
       </tr>
+      <tr>
+        <td>
+          <style>
+            input.tabla2 {
+              width: 100%;
+              background-color: transparent;
+              color: white;
+            }
+          </style>
+          <style>
+            input.input {
+              width: 5%;
+              background-color: transparent;
+              color: white;
+            }
+          </style>
+          <form id="form1" name="form1" method="post">
+            N. de Factores a Registrar: &nbsp;
+            <input class="input" name="cantidad" type="number" min="1" id="cantidad"
+              value="<?php echo $cantidad; ?>" />&nbsp;
+            <input type="submit" name="submit" value="Ok" class="btn btn-success" />
+          </form>
+        </td>
+      </tr>
     </thead>
   </table>
-</div>
-<div class="input-group input-group-sm mb-3">
-  <form id="form1" name="form1" method="post">
-    N. de Factores a Registrar:
-    <input name="cantidad" type="number" min="1" id="cantidad" value="<?php echo $cantidad; ?>" />
-    <input type="submit" name="submit" value="Ok" />
-  </form>
 </div>
 
 <?php if ($cantidad > 0) { ?>
@@ -75,14 +92,16 @@ if (isset($_POST['submit'])) {
               <td>
                 <?php echo $i; ?>
               </td>
-              <td><input type="text" name="producto<?php echo $i; ?>" required="required"></td>
+              <td><input class="tabla2" type="text" name="producto<?php echo $i; ?>" required="required"></td>
               <input name="num<?php echo $i; ?>" type="hidden">
               <input name="cantidad" type="hidden" value="<?php echo $cantidad; ?>" />
             </tr>
           <?php } ?>
         </thead>
       </table>
-      <button type="submit" name="submit">Guardar</button>
+      <center>
+        <button type="submit" name="submit" class="btn btn-success">Guardar</button>
+      </center>
     </div>
   </form>
 <?php } ?>
