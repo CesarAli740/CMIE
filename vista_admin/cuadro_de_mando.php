@@ -1,4 +1,4 @@
-<?php include '../header.php'; ?>
+
 <?php
 
 session_start();
@@ -15,6 +15,7 @@ if ($validar == null || $validar = '') {
 
 
 ?>
+<?php include '../header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +51,7 @@ if ($validar == null || $validar = '') {
       </div> -->
       <br>
       </form>
-      <table class=" table table-responsive-sm table-striped table-dark " id="table_id">
+      <table class=" table table-responsive-sm table-striped table-active " id="table_id">
         <thead>
           <tr>
 
@@ -116,7 +117,7 @@ if ($validar == null || $validar = '') {
           <div class="container is-fluid">
             <div class="col-xs-12">
               </form>
-              <table class=" table table-responsive-sm table-striped table-dark " id="table_id">
+              <table class=" table table-responsive-sm table-striped table-active " id="table_id">
                 <thead>
                   <tr>
                     <th>Dimensiones</th>

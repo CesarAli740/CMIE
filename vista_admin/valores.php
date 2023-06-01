@@ -27,11 +27,6 @@ if ($validar == null || $validar = '') {
 	<title>Usuarios</title>
 </head>
 
-<style>
-	body {
-		background-image: url('../img/FondoMulti.svg');
-	}
-</style>
 
 <!DOCTYPE html>
 <html>
@@ -39,7 +34,6 @@ if ($validar == null || $validar = '') {
 <head>
 	<title>Tabla en PHP</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<style>
 		.table {
 			margin: 0 20px;
@@ -51,8 +45,8 @@ if ($validar == null || $validar = '') {
 
 
 	<div class="container">
-		<table class="table table-responsive-sm table-bordered table-dark table-striped">
-			<thead class="thead-dark">
+		<table class="table table-responsive-sm table-bordered table-active table-striped">
+			<thead class="thead-active">
 
 				<tr>
 					<th>
@@ -63,8 +57,8 @@ if ($validar == null || $validar = '') {
 		</table>
 	</div>
 	<div class="container">
-		<table class="table table-responsive-sm table-bordered table-dark table-striped">
-			<thead class="thead-dark">
+		<table class="table table-responsive-sm table-bordered table-active table-striped">
+			<thead class="thead-active">
 
 				<tr>
 					<th>
@@ -75,8 +69,8 @@ if ($validar == null || $validar = '') {
 		</table>
 	</div>
 	<div class="container">
-		<table class="table table-responsive-sm table-bordered table-dark table-striped">
-			<thead class="thead-dark">
+		<table class="table table-responsive-sm table-bordered table-active table-striped">
+			<thead class="thead-active">
 				<tr>
 					<th>
 						<center>(CANTIDAD)</center>
@@ -170,8 +164,8 @@ if ($validar == null || $validar = '') {
 	</div><br><br>
 
 	<div class="container">
-		<table class="table table-responsive-sm table-bordered table-dark table-striped">
-			<thead class="thead-dark">
+		<table class="table table-responsive-sm table-bordered table-active table-striped">
+			<thead class="thead-active">
 
 				<tr>
 					<th>
@@ -182,8 +176,8 @@ if ($validar == null || $validar = '') {
 		</table>
 	</div>
 	<div class="container">
-		<table class="table table-responsive-sm table-bordered table-dark table-striped">
-			<thead class="thead-dark">
+		<table class="table table-responsive-sm table-bordered table-active table-striped">
+			<thead class="thead-active">
 
 				<tr>
 					<th>
@@ -194,7 +188,7 @@ if ($validar == null || $validar = '') {
 		</table>
 	</div>
 	<div class="container">
-		<table class="table table-responsive-sm table-bordered table-dark table-striped">
+		<table class="table table-responsive-sm table-bordered table-active table-striped">
 
 			<tbody>
 				<?php

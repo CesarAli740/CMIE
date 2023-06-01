@@ -11,16 +11,27 @@
     <link rel="stylesheet" type="text/css" href="./librerias/datatable/dataTables.bootstrap4.min.css">
 
 </head>
-<style>
-    body {
-      background-image: url('./img/FondoMulti.svg');
-      margin-top: 1rem;
-    }
-    div.jumbotron{
-        background-color: #e5e6c8;
-    }
-  </style>
 <body>
+  <style>
+    body{
+      margin-top: 1rem;
+      background-color: #ECF8F9;
+    }
+    a.boton {
+    text-decoration: none;
+    background-color: #1B9C85;
+    border: none;
+    color: white;
+    padding: 0.375rem 0.75rem;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+  }
+  </style>
     <div class="container">
 		<div class="row">
 			<div class="col-sm-12" style="text-align: center;">
@@ -30,7 +41,7 @@
 					<hr class="my-4">
 					<p><img src="./img/ejercito_logo.png" class="rounded" width="30%" /></p>
 					<p class="lead">
-						<a class="btn btn-success btn-lg" href="./includes/login.php" role="button">Ingresar</a>
+						<a class="boton" href="./includes/login.php" role="button">Ingresar</a>
 					</p>
 				</div>
 

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 error_reporting(0);
 
@@ -11,7 +10,6 @@ if ($validar == null || $validar = '') {
 	header("Location: ../includes/login.php");
 	die();
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -19,7 +17,6 @@ if ($validar == null || $validar = '') {
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mi Página</title>
-	<link rel="stylesheet" type="text/css" href="./principal.css">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
 		integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
 		crossorigin="anonymous"></script>
@@ -81,14 +78,14 @@ if ($validar == null || $validar = '') {
 		<br>
 		<center>
 			<div>
-				<a class="btn btn-success" href="./agregarFactores.php">Nuevo Factor
+				<a class="boton" href="./agregarFactores.php">Nuevo Factor
 					<i class="fa fa-plus"></i> </a>
 			</div>
 		</center>
 		<br><br>
 		<div class="container">
-			<table class="table table-bordered table-dark table-striped">
-				<thead class="thead-dark">
+			<table class="table table-bordered table-active table-striped">
+				<thead class="thead-active">
 					<tr>
 						<th>
 							<center>CUADRO DE MANDO INTEGRAL DEL EJERCITO</center>
@@ -107,8 +104,8 @@ if ($validar == null || $validar = '') {
 
 
 		<div class="container">
-			<table class="table table-bordered table-dark table-striped">
-				<thead class="thead-dark">
+			<table class="table table-bordered table-active table-striped">
+				<thead class="thead-active">
 					<tr>
 						<th>
 							<center>Presencia o Ausencia</center>
@@ -119,8 +116,8 @@ if ($validar == null || $validar = '') {
 		</div>
 		<div class="container">
 
-			<table class="table table-responsive-sm table-bordered table-dark table-striped">
-				<thead class="thead-dark">
+			<table class="table table-responsive-sm table-bordered table-active table-striped">
+				<thead class="thead-active">
 					<tr>
 						<th>
 							<center>Factores</center>
@@ -206,8 +203,8 @@ if ($validar == null || $validar = '') {
 
 <form action="../includes/validar_factor.php" method="POST">
 	<div class="container">
-		<table class="table table-bordered table-dark table-striped">
-			<thead class="thead-dark">
+		<table class="table table-bordered table-active table-striped">
+			<thead class="thead-active">
 				<tr>
 					<th>
 						<center>Grado del Factor a ser Medido</center>
@@ -218,8 +215,8 @@ if ($validar == null || $validar = '') {
 	</div>
 	<div class="container">
 
-		<table class="table table-responsive-sm table-bordered table-dark table-striped">
-			<thead class="thead-dark">
+		<table class="table table-responsive-sm table-bordered table-active table-striped">
+			<thead class="thead-active">
 				<tr>
 					<th>
 						<center>Factores</center>
@@ -331,8 +328,8 @@ if ($validar == null || $validar = '') {
 	<center>
 		<div class="mb-3">
 
-			<input type="submit" value="Guardar" class="btn btn-success" name="subir_nota">
-			<a href="./principal.php" class="btn btn-danger">Cancelar</a>
+			<input type="submit" value="Guardar" class="boton" name="subir_nota">
+			<a href="./principal.php" class="botonr">Cancelar</a>
 
 		</div>
 	</center>

@@ -24,8 +24,8 @@ if ($validar == null || $validar = '') {
 </head>
 
 <style>
-    body {
-        background-image: url('../img/FondoMulti.svg');
+   body {
+        background-color:  #ECF8F9;
         margin-top: 1rem;
     }
 </style>

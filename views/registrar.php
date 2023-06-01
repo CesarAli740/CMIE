@@ -28,18 +28,16 @@ if ($validar == null || $validar = '') {
   <link rel="stylesheet" href="../css/es.css">
   <link rel="stylesheet" href="../css/styles.css">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
+  
 </head>
 <style>
   body {
-    background-image: url('../img/FondoMulti.svg');
-    color: #fff;
-  }
+        background-color:  #ECF8F9;
+        color: black;
+    }
 </style>
 
 <body id="page-top">
@@ -85,8 +83,8 @@ if ($validar == null || $validar = '') {
                 <label for="rol" class="form-label">Rol de usuario </label>
                 <div class="container">
                   <div class="row">
-                    <div class="col-6 col-md-4">
-                      <select class="selectpicker" type="number" id="rol" name="rol">
+                    <div class="col-6 col-md-9">
+                      <select class="form-select" type="number" id="rol" name="rol">
                         <option value="1">Administrador</option>
                         <option value="2">Evaluador - P1</option>
                         <option value="3">Evaluador - P2</option>
@@ -192,7 +190,6 @@ if ($validar == null || $validar = '') {
 
 
   <div class="form-group">
-    <label for="gunidad" class="form-label">Selecciona una Gran Unidad:</label>
     <div class="container">
       <style>
         option {
@@ -230,9 +227,10 @@ if ($validar == null || $validar = '') {
         }
       </style>
       <div class="row">
-        <div class="col-6 col-md-4">
+        <div class="col-6 col-md-9">
 
-          <select class="selectpicker" id="gunidad" onchange="updateCountries()" name="gunidad">
+        <label for="gunidad" class="form-label">Selecciona una Gran Unidad:</label>
+          <select class="form-select" id="gunidad" onchange="updateCountries()" name="gunidad">
             <option value="">-- Selecciona una Gran Unidad --</option>
             <option value="DENOMINATIVOS ABREVIACIONES">ESTADO MAYOR GENERAL DEL EJERCITO</option>
             <option value="GRANDES Y PEQUEÑAS UNIDADES">GRANDES Y PEQUEÑAS UNIDADES</option>
@@ -242,22 +240,21 @@ if ($validar == null || $validar = '') {
               COORDINADOR</option>
             <option value="REPARTICIONES MILITARES DEL EJÉRCITO">REPARTICIONES MILITARES DEL EJÉRCITO
             </option>
-          </select><br>
+          </select>
 
-          <label for="division">Selecciona una Division:</label><br>
-          <select id="division" onchange="updateCities()" name="division">
+          <label for="division">Selecciona una Division:</label>
+          <select class="form-select" id="division" onchange="updateCities()" name="division">
             <option value="">-- Selecciona un Division --</option>
           </select>
-          <br>
-          <label for="unidad">Selecciona una Unidad:</label><br>
-          <select id="unidad" name="unidad">
+          <label for="unidad">Selecciona una Unidad:</label>
+          <select class="form-select" id="unidad" name="unidad">
             <option value="">-- Selecciona una Unidad --</option>
           </select>
         </div>
       </div>
     </div>
   </div>
-  <br>
+ 
 
   <div class="mb-3">
 

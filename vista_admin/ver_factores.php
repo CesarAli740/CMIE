@@ -81,8 +81,8 @@ if ($validar == null || $validar = '') {
     <form action="../includes/validar_factor.php" method="POST">
         <br>
         <div class="container">
-            <table class="table table-bordered table-dark table-striped">
-                <thead class="thead-dark">
+            <table class="table table-bordered table-active table-striped">
+                <thead class="thead-active">
                     <tr>
                         <th>
                             <center>CUADRO DE MANDO INTEGRAL DEL EJERCITO</center>
@@ -101,8 +101,8 @@ if ($validar == null || $validar = '') {
 
 
         <div class="container">
-            <table class="table table-bordered table-dark table-striped">
-                <thead class="thead-dark">
+            <table class="table table-bordered table-active table-striped">
+                <thead class="thead-active">
                     <tr>
                         <th>
                             <center>Presencia o Ausencia</center>
@@ -113,8 +113,8 @@ if ($validar == null || $validar = '') {
         </div>
         <div class="container">
 
-            <table class="table table-bordered table-dark table-striped">
-                <thead class="thead-dark">
+            <table class="table table-bordered table-active table-striped">
+                <thead class="thead-active">
                     <tr>
                         <th>
                             <center>Factores</center>
@@ -175,8 +175,8 @@ if ($validar == null || $validar = '') {
 
 <form action="../includes/validar_factor.php" method="POST">
     <div class="container">
-        <table class="table table-bordered table-dark table-striped">
-            <thead class="thead-dark">
+        <table class="table table-bordered table-active table-striped">
+            <thead class="thead-active">
                 <tr>
                     <th>
                         <center>Grado del Factor a ser Medido</center>
@@ -187,8 +187,8 @@ if ($validar == null || $validar = '') {
     </div>
     <div class="container">
 
-        <table class="table table-bordered table-dark table-striped">
-            <thead class="thead-dark">
+        <table class="table table-bordered table-active table-striped">
+            <thead class="thead-active">
                 <tr>
                     <th>
                         <center>Factores</center>
@@ -243,7 +243,7 @@ if ($validar == null || $validar = '') {
     </div>
     <center>
         <div class="mb-3">
-            <a href="./coeficiente_de_efectividad.php" class="btn btn-danger">Volver</a>
+            <a href="./coeficiente_de_efectividad.php" class="botonr">Volver</a>
 
         </div>
     </center>

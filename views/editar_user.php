@@ -37,12 +37,12 @@ $usuario = mysqli_fetch_assoc($resultado);
 
 <style>
     body {
-        background-image: url('../img/FondoMulti.svg');
+        background-color:  #ECF8F9;
         margin-top: 1rem;
     }
 
     div.container {
-        color: #fff;
+        color: black;
     }
 </style>
 
@@ -225,11 +225,11 @@ $usuario = mysqli_fetch_assoc($resultado);
                                         }
                                     </style>
                                     <div class="row">
-                                        <div class="col-6 col-md-4">
+                                        <div class="col-6 col-md-9">
 
-                                            <select class="selectpicker" id="gunidad" onchange="updateCountries()"
+                                            <select class="form-select" id="gunidad" onchange="updateCountries()"
                                                 name="gunidad">
-                                                <option value="">Usted pertenece: <?php echo $usuario['gunidad']; ?></option>
+                                                <option value=""><?php echo $usuario['gunidad']; ?></option>
                                                 <option value="DENOMINATIVOS ABREVIACIONES">ESTADO MAYOR GENERAL DEL
                                                     EJERCITO</option>
                                                 <option value="GRANDES Y PEQUEÑAS UNIDADES">GRANDES Y PEQUEÑAS UNIDADES
@@ -245,13 +245,13 @@ $usuario = mysqli_fetch_assoc($resultado);
                                             </select><br>
 
                                             <label for="division">Selecciona una Division:</label><br>
-                                            <select id="division" onchange="updateCities()" name="division">
-                                                <option value="">Usted pertenece: <?php echo $usuario['division']; ?></option>
+                                            <select class="form-select" id="division" onchange="updateCities()" name="division">
+                                                <option value=""><?php echo $usuario['division']; ?></option>
                                             </select>
                                             <br>
                                             <label for="unidad">Selecciona una Unidad:</label><br>
-                                            <select id="unidad" name="unidad">
-                                                <option value="">sted pertenece: <?php echo $usuario['unidad']; ?></option>
+                                            <select  class="form-select"id="unidad" name="unidad">
+                                                <option value=""><?php echo $usuario['unidad']; ?></option>
                                             </select>
                                         </div>
                                     </div>

@@ -37,14 +37,14 @@ if (isset($_POST['submit'])) {
 ?><br>
 <center>
   <div>
-    <a class="btn btn-success" href="./agergarFactores2.php">Grado del Factor a ser Medido
+    <a class="boton" href="./agergarFactores2.php">Grado del Factor a ser Medido
       <i class="fa fa-plus"></i> </a>
   </div>
 </center>
 <br><br>
 <div class="container">
-  <table class="table table-bordered table-dark table-striped">
-    <thead class="thead-dark">
+  <table class="table table-bordered table-active table-striped">
+    <thead class="thead-active">
       <tr>
         <th>
           <center>Presencia o Ausencia</center>
@@ -56,21 +56,27 @@ if (isset($_POST['submit'])) {
             input.tabla2 {
               width: 100%;
               background-color: transparent;
-              color: white;
+              color: black;
+              border-top-style: hidden;
+              border-right-style: hidden;
+              border-left-style: hidden;
             }
           </style>
           <style>
             input.input {
               width: 5%;
               background-color: transparent;
-              color: white;
+              color: black;
+              border-top-style: hidden;
+              border-right-style: hidden;
+              border-left-style: hidden;
             }
           </style>
           <form id="form1" name="form1" method="post">
             N. de Factores a Registrar: &nbsp;
             <input class="input" name="cantidad" type="number" min="1" id="cantidad"
               value="<?php echo $cantidad; ?>" />&nbsp;
-            <input type="submit" name="submit" value="Ok" class="btn btn-success" />
+            <input type="submit" name="submit" value="Ok" class="boton" />
           </form>
         </td>
       </tr>
@@ -81,15 +87,21 @@ if (isset($_POST['submit'])) {
 <?php if ($cantidad > 0) { ?>
   <form method="POST">
     <div class="container">
-      <table width="auto" border="0" class="table table-responsive-sm table-bordered table-dark table-striped">
-        <thead class="thead-dark">
+      <table width="auto" border="0" class="table table-responsive-sm table-bordered table-active table-striped">
+        <thead class="thead-active">
           <tr>
-            <td>No.</td>
+            <style>
+              td.angosta {
+                width: 7%;
+                text-align: center;
+              }
+            </style>
+            <td class="angosta">No.</td>
             <td>Factores:</td>
           </tr>
           <?php for ($i = 1; $i <= $cantidad; $i++) { ?>
             <tr>
-              <td>
+              <td class="angosta">
                 <?php echo $i; ?>
               </td>
               <td><input class="tabla2" type="text" name="producto<?php echo $i; ?>" required="required"></td>
@@ -100,7 +112,7 @@ if (isset($_POST['submit'])) {
         </thead>
       </table>
       <center>
-        <button type="submit" name="submit" class="btn btn-success">Guardar</button>
+        <button type="submit" name="submit" class="boton">Guardar</button>
       </center>
     </div>
   </form>

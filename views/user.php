@@ -1,4 +1,3 @@
-<?php include '../header.php'; ?>
 <?php
 
 session_start();
@@ -15,19 +14,8 @@ if ($validar == null || $validar = '') {
 
 
 ?>
-<style>
-  body {
-    background-image: url('../img/FondoMulti.svg');
-  }
 
-  h1 {
-    border-radius: 5px;
-    margin: 10%;
-    padding: 1px;
-    text-align: center;
-    background-color: #e5e6c8;
-  }
-</style>
+<?php include '../header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,128 +31,133 @@ if ($validar == null || $validar = '') {
   <link rel="stylesheet" href="../css/es.css">
   <title>Usuarios</title>
 </head>
+<style>
+  body {
+    background-color: #ECF8F9;
+  }
+</style>
 
-<div class="container is-fluid">
-  <div class="col-xs-12"><br>
-    <h1>Bienvenido Administrador
-      <?php echo $_SESSION['nombre']; ?>
-    </h1>
-    <br>
-    <h1>Lista de usuarios</h1>
-    <br>
-    <div>
-      <a class="btn btn-success" href="./registrar.php">Nuevo usuario
-        <i class="fa fa-plus"></i> </a>
-      <a class="btn btn-warning" href="../includes/_sesion/cerrarSesion.php">Salir
-        <i class="fa fa-power-off" aria-hidden="true"></i>
-      </a>
+<body>
+  <div class="container is-fluid">
+    <div class="col-xs-12"><br>
+      <h1>Bienvenido Administrador
+        <?php echo $_SESSION['nombre']; ?>
+      </h1>
+      <br>
+      <h1>Lista de usuarios</h1>
+      <br>
+      <div>
+        <a class="btn btn-success" href="./registrar.php">Nuevo usuario
+          <i class="fa fa-plus"></i> </a>
+        <a class="btn btn-warning" href="../includes/_sesion/cerrarSesion.php">Salir
+          <i class="fa fa-power-off" aria-hidden="true"></i>
+        </a>
 
-    </div>
-    <br><br>
-    </form>
-    <table class=" table table-responsive-sm table-striped table-dark " id="table_id">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Apellidos</th>
-          <th>Correo</th>
-          <th>Grado</th>
-          <th>Password</th>
-          <th>Telefono</th>
-          <!--    <th>Fecha</th> -->
-          <th>Rol</th>
-          <th>Gran Unidad</th>
-          <th>Division</th>
-          <th>Unidad</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
+      </div>
+      <br><br>
+      </form>
+      <table class=" table table-responsive-sm table-striped table-active " id="table_id">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Correo</th>
+            <th>Grado</th>
+            <th>Password</th>
+            <th>Telefono</th>
+            <!--    <th>Fecha</th> -->
+            <th>Rol</th>
+            <th>Gran Unidad</th>
+            <th>Division</th>
+            <th>Unidad</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
 
-        <?php
+          <?php
 
-        $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-        $SQL = "SELECT user.id, user.nombre, user.apPAt, user.apMAt, user.correo, user.grado, user.password, user.telefono,
+          $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+          $SQL = "SELECT user.id, user.nombre, user.apPAt, user.apMAt, user.correo, user.grado, user.password, user.telefono,
 user.fecha, permisos.rol, user.gunidad, user.division, user.unidad FROM user
 LEFT JOIN permisos ON user.rol = permisos.id";
-        $dato = mysqli_query($conexion, $SQL);
+          $dato = mysqli_query($conexion, $SQL);
 
-        if ($dato->num_rows > 0) {
-          while ($fila = mysqli_fetch_array($dato)) {
+          if ($dato->num_rows > 0) {
+            while ($fila = mysqli_fetch_array($dato)) {
+
+              ?>
+              <tr>
+                <td>
+                  <?php echo $fila['nombre']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['apPAt'], " ", $fila['apMAt']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['correo']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['grado']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['password']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['telefono']; ?>
+                </td>
+                <!-- <td><?php echo $fila['fecha']; ?></td> -->
+                <td>
+                  <?php echo $fila['rol']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['gunidad']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['division']; ?>
+                </td>
+                <td>
+                  <?php echo $fila['unidad']; ?>
+                </td>
+
+
+
+                <td>
+
+
+                  <a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?> ">
+                    <i class="fas fa-edit"></i> </a>
+
+                  <a class="btn btn-danger" href="eliminar_user.php?id=<?php echo $fila['id'] ?>">
+                    <i class="fas fa-trash"></i></a>
+
+                </td>
+              </tr>
+
+
+              <?php
+            }
+          } else {
 
             ?>
-            <tr>
-              <td>
-                <?php echo $fila['nombre']; ?>
-              </td>
-              <td>
-                <?php echo $fila['apPAt'], " ", $fila['apMAt']; ?>
-              </td>
-              <td>
-                <?php echo $fila['correo']; ?>
-              </td>
-              <td>
-                <?php echo $fila['grado']; ?>
-              </td>
-              <td>
-                <?php echo $fila['password']; ?>
-              </td>
-              <td>
-                <?php echo $fila['telefono']; ?>
-              </td>
-              <!-- <td><?php echo $fila['fecha']; ?></td> -->
-              <td>
-                <?php echo $fila['rol']; ?>
-              </td>
-              <td>
-                <?php echo $fila['gunidad']; ?>
-              </td>
-              <td>
-                <?php echo $fila['division']; ?>
-              </td>
-              <td>
-                <?php echo $fila['unidad']; ?>
-              </td>
-
-
-
-              <td>
-
-
-                <a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?> ">
-                  <i class="fas fa-edit"></i> </a>
-
-                <a class="btn btn-danger" href="eliminar_user.php?id=<?php echo $fila['id'] ?>">
-                  <i class="fas fa-trash"></i></a>
-
-              </td>
+            <tr class="text-center">
+              <td colspan="16">No existen registros</td>
             </tr>
 
 
             <?php
+
           }
-        } else {
 
           ?>
-          <tr class="text-center">
-            <td colspan="16">No existen registros</td>
-          </tr>
 
 
-          <?php
-
-        }
-
-        ?>
-
-
-        </body>
-    </table>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8"
-      src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
-    <script src="../js/user.js"></script>
+</body>
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+<script src="../js/user.js"></script>
 
 
 </html>

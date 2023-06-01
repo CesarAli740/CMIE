@@ -38,13 +38,13 @@ $dimension = mysqli_fetch_assoc($resultado);
 </head>
 
 <style>
-    body {
-        background-image: url('../img/FondoMulti.svg');
+   body {
+        background-color:  #ECF8F9;
         margin-top: 1rem;
     }
 
     div.container {
-        color: #fff;
+        color: black;
     }
 </style>
 

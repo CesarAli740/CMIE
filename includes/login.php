@@ -18,14 +18,28 @@
 
 <style>
     body {
-      background-image: url('../img/FondoMulti.svg');
+      background-color: #ECF8F9;
       margin-top: 5rem;
     }
+    .botonlogin {
+    text-decoration: none;
+    background-color: #1B9C85;
+    border: none;
+    color: white;
+    padding: 0.375rem 0.75rem;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Roboto', sans-serif;
+  }
   </style>
 <body>
 <form  action="_functions.php" method="POST">
 <div id="login" >
-        <div class="container p-3 my-3 bg-dark text-white">
+        <div class="container ">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-8">
                     <div id="login-box" class="col-md-12">
@@ -46,7 +60,7 @@
                             <div class="form-group">
                              <br>
                                 <center>
-                                <input type="submit"class="btn btn-success" value="Ingresar">   
+                                <input type="submit"class="botonlogin" value="Ingresar">   
                                 </center>
                             <div class="my-2">
                             <a href="../recuperacion/recovery.php">¿Olvidaste tu contraseña?</a>

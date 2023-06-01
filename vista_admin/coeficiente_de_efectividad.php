@@ -1,4 +1,4 @@
-<?php include '../header.php'; ?>
+
 <?php
 
 session_start();
@@ -15,6 +15,7 @@ if ($validar == null || $validar = '') {
 }
 
 ?>
+<?php include '../header.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,8 +75,8 @@ if ($validar == null || $validar = '') {
 
 <br>
     <div class="container">
-        <table class="table table-bordered table-dark table-striped">
-            <thead class="thead-dark">
+        <table class="table table-bordered table-active table-striped">
+            <thead class="thead-active">
                 <tr>
                     <th>
                         <center>NOTA FINAL</center>
@@ -108,8 +109,8 @@ if ($validar == null || $validar = '') {
     </div>
 
     <div class="container">
-        <table class="table table-bordered table-dark table-striped">
-            <thead class="thead-dark">
+        <table class="table table-bordered table-active table-striped">
+            <thead class="thead-active">
                 <tr>
                     <th colspan="3">
                         <center>RESUMEN GENERAL</center>
@@ -167,7 +168,7 @@ if ($validar == null || $validar = '') {
 
                         </td>
                         <td scope="col">
-                            <center><a class="btn btn-success"
+                            <center><a class="boton"
                                     href="./ver_factores.php?id=<?php echo $c; ?>">
                                     <i class="fas fa-eye"></i></a></center>
                         </td>
@@ -183,8 +184,8 @@ if ($validar == null || $validar = '') {
     <form method="post" action="./reporte.php">
     <center>
         <div class="mb-3">
-            <button type="submit" name="generar_pdf" class="btn btn-success">Generar PDF</button>
-            <a href="./principal.php" class="btn btn-danger">Volver</a>
+            <button type="submit" name="generar_pdf" class="boton">Generar PDF</button>
+            <a href="./principal.php" class="botonr">Volver</a>
         </div>
     </center>
     </form>
