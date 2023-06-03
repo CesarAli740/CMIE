@@ -1,4 +1,3 @@
-
 <?php
 
 session_start();
@@ -28,6 +27,7 @@ if ($validar == null || $validar = '') {
         integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
         crossorigin="anonymous"></script>
 </head>
+
 <body>
 
     <?php
@@ -40,7 +40,32 @@ if ($validar == null || $validar = '') {
         $result = $conn->query($sql);
         $query = "SELECT AVG(nota) AS media FROM unidadejer WHERE unidadejer.id_factores = $unidad AND unidadejer.rol = $o AND unidadejer.tipo = 2";
         $resultado = $conn->query($query);
+        $sql3 = "SELECT notas_finales.personal, notas_finales.inteligencia, notas_finales.operaciones, notas_finales.logistica, notas_finales.accion_civica, notas_finales.derechos_humanos FROM notas_finales WHERE notas_finales.id_unidad = $unidad";
+        $result3 = $conn->query($sql3);
+        while ($row = $result3->fetch_assoc()) {
+            if ($o == 2) {
+                $personal = $row['personal'];
+                $valor1 = $personal * 0.2;
+            } else if ($o == 3) {
+                $inteligencia = $row['inteligencia'];
+                $valor2 = $inteligencia * 0.15;
+            } else if ($o == 4) {
+                $operaciones = $row['inteligencia'];
+                $valor3 = $inteligencia * 0.2;
+            } else if ($o == 5) {
+                $logistica = $row['logistica'];
+                $valor4 = $logistica * 0.2;
+            } else if ($o == 6) {
+                $accion_civica = $row['accion_civica'];
+                $valor5 = $accion_civica * 0.1;
+            } else if ($o == 7) {
+                $derechos_humanos = $row['derechos_humanos'];
+                $valor6 = $derechos_humanos * 0.15;
+            }
+        }
 
+        $mediatotalfinal = $valor1 + $valor2 + $valor3 + $valor4 + $valor5 + $valor6;
+        $mediatotalfinal = round($mediatotalfinal, 2);
         if ($result->num_rows > 0 and $resultado->num_rows > 0) {
             // Obtener el valor de la media
             $row = $result->fetch_assoc();
@@ -55,14 +80,8 @@ if ($validar == null || $validar = '') {
 
             $mediafinal_array[] = $mediafinal; // Agregar $mediafinal al arreglo
     
-            $valor1 = $mediafinal_array[0] * 0.2;
-            $valor2 = $mediafinal_array[1] * 0.15;
-            $valor3 = $mediafinal_array[2] * 0.2;
-            $valor4 = $mediafinal_array[3] * 0.2;
-            $valor5 = $mediafinal_array[4] * 0.1;
-            $valor6 = $mediafinal_array[5] * 0.15;
-            $mediatotalfinal = $valor1 + $valor2 + $valor3 + $valor4 + $valor5 + $valor6;
-            $mediatotalfinal = round($mediatotalfinal, 2);
+
+
 
             ?>
             <?php
@@ -73,7 +92,7 @@ if ($validar == null || $validar = '') {
     }
     ?>
 
-<br>
+    <br>
     <div class="container">
         <table class="table table-bordered table-active table-striped">
             <thead class="thead-active">
@@ -161,15 +180,34 @@ if ($validar == null || $validar = '') {
                             </style>
                             <center>
                                 <p class="notafinal">
-                                    <?php echo $mediafinal_array[$c - 2]; ?>
+
+                                    <?php
+                                    $sql3 = "SELECT notas_finales.personal, notas_finales.inteligencia, notas_finales.operaciones, notas_finales.logistica, notas_finales.accion_civica, notas_finales.derechos_humanos FROM notas_finales WHERE notas_finales.id_unidad = $unidad";
+                                    $result3 = $conn->query($sql3);
+                                    while ($row = $result3->fetch_assoc()) {
+                                        if ($c == 2) {
+                                            echo $row['personal'];
+                                        } else if ($c == 3) {
+                                            echo $row['inteligencia'];
+                                        } else if ($c == 4) {
+                                            echo $row['operaciones'];
+                                        } else if ($c == 5) {
+                                            echo $row['logistica'];
+                                        } else if ($c == 6) {
+                                            echo $row['accion_civica'];
+                                        } else if ($c == 7) {
+                                            echo $row['derechos_humanos'];
+                                        }
+                                    }
+                                    ?>
+
                                 </p>
                             </center>
 
 
                         </td>
                         <td scope="col">
-                            <center><a class="boton"
-                                    href="./ver_factores.php?id=<?php echo $c; ?>">
+                            <center><a class="boton" href="./ver_factores.php?id=<?php echo $c; ?>">
                                     <i class="fas fa-eye"></i></a></center>
                         </td>
                     </tr>
@@ -182,12 +220,12 @@ if ($validar == null || $validar = '') {
     </div>
 
     <form method="post" action="./reporte.php">
-    <center>
-        <div class="mb-3">
-            <button type="submit" name="generar_pdf" class="boton">Generar PDF</button>
-            <a href="./principal.php" class="botonr">Volver</a>
-        </div>
-    </center>
+        <center>
+            <div class="mb-3">
+                <button type="submit" name="generar_pdf" class="boton">Generar PDF</button>
+                <a href="./principal.php" class="botonr">Volver</a>
+            </div>
+        </center>
     </form>
 
 </html>

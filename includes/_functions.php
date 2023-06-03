@@ -340,8 +340,16 @@ function editar_registro()
   }
   $consulta = "UPDATE user SET nombre = '$nombre', apPAt = '$apPAt', apMAt = '$apMAt', correo = '$correo', grado = '$grado', telefono = '$telefono',
 		password ='$password', rol = '$rol', gunidad = '$gunidad', division = '$division', unidad = '$unidad', id_unidad = '$id_unidad' WHERE id = '$id' ";
-
   mysqli_query($conexion, $consulta);
+
+  session_start();
+  $consulta2 = "SELECT * FROM user WHERE nombre='$nombre' AND password='$password'";
+  $resultado2 = mysqli_query($conexion, $consulta2);
+  $filas2 = mysqli_fetch_array($resultado2);
+  
+  $_SESSION['id_unidad'] = $filas2['id_unidad'];
+  $_SESSION['rol'] = $filas2['rol'];
+  $_SESSION['unidad'] = $filas2['unidad'];
 
 
   header('Location: ../views/user.php');

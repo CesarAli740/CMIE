@@ -17,11 +17,11 @@ if (isset($_POST['accion'])){
     function editar_registro() {
 		$conexion=mysqli_connect("localhost","root","","CMIE");
 		extract($_POST);
-		$consulta="UPDATE dimension SET dimensiones = '$dimensiones', definicion = '$definicion' WHERE id = '$id' ";
+		$consulta="UPDATE notas_factores SET nombre = '$nombre' WHERE id = '$id'";
 
 		mysqli_query($conexion, $consulta);
 
-		header('Location: ../vista_admin/cuadro_de_mando.php');
+		header('Location: ../vista_admin/factor_admin.php');
 
 }
 
@@ -29,11 +29,11 @@ function eliminar_registro() {
     $conexion=mysqli_connect("localhost","root","","CMIE");
     extract($_POST);
     $id= $_POST['id'];
-    $consulta= "DELETE FROM dimension WHERE id= $id";
+    $consulta= "DELETE FROM notas_factores WHERE id= $id";
 
     mysqli_query($conexion, $consulta);
 
-    header('Location: ../vista_admin/cuadro_de_mando.php');
+    header('Location: ../vista_admin/factor_admin.php');
 
 }
 
