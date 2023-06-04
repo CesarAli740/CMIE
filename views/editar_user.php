@@ -37,7 +37,7 @@ $usuario = mysqli_fetch_assoc($resultado);
 
 <style>
     body {
-        background-color:  #ECF8F9;
+        background-color: #ECF8F9;
         margin-top: 1rem;
     }
 
@@ -97,24 +97,9 @@ $usuario = mysqli_fetch_assoc($resultado);
                                     placeholder="Escribe el rol, 1 admin, 2 lector.." required>
                                 <input type="hidden" name="accion" value="editar_registro">
                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                            </div><!-- 
-                            <div class="form-group">
-                                <label for="gunidad" class="form-label">Gran Unidad *</label>
-                                <input type="text" id="gunidad" name="gunidad" class="form-control"
-                                    value="<?php echo $usuario['gunidad']; ?>" required>
                             </div>
-                            <div class="form-group">
-                                <label for="division" class="form-label">Division *</label>
-                                <input type="text" id="division" name="division" class="form-control"
-                                    value="<?php echo $usuario['division']; ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="unidad" class="form-label">Unidad *</label>
-                                <input type="text" id="unidad" name="unidad" class="form-control"
-                                    value="<?php echo $usuario['unidad']; ?>" required>
-                            </div><br> -->
 
-                            
+
 
 
                             <script>
@@ -229,7 +214,9 @@ $usuario = mysqli_fetch_assoc($resultado);
 
                                             <select class="form-select" id="gunidad" onchange="updateCountries()"
                                                 name="gunidad">
-                                                <option value=""><?php echo $usuario['gunidad']; ?></option>
+                                                <option value="">
+                                                    <?php echo $usuario['gunidad']; ?>
+                                                </option>
                                                 <option value="DENOMINATIVOS ABREVIACIONES">ESTADO MAYOR GENERAL DEL
                                                     EJERCITO</option>
                                                 <option value="GRANDES Y PEQUEÑAS UNIDADES">GRANDES Y PEQUEÑAS UNIDADES
@@ -245,13 +232,18 @@ $usuario = mysqli_fetch_assoc($resultado);
                                             </select><br>
 
                                             <label for="division">Selecciona una Division:</label><br>
-                                            <select class="form-select" id="division" onchange="updateCities()" name="division">
-                                                <option value=""><?php echo $usuario['division']; ?></option>
+                                            <select class="form-select" id="division" onchange="updateCities()"
+                                                name="division">
+                                                <option value="">
+                                                    <?php echo $usuario['division']; ?>
+                                                </option>
                                             </select>
                                             <br>
                                             <label for="unidad">Selecciona una Unidad:</label><br>
-                                            <select  class="form-select"id="unidad" name="unidad">
-                                                <option value=""><?php echo $usuario['unidad']; ?></option>
+                                            <select class="form-select" id="unidad" name="unidad">
+                                                <option value="">
+                                                    <?php echo $usuario['unidad']; ?>
+                                                </option>
                                             </select>
                                         </div>
                                     </div>

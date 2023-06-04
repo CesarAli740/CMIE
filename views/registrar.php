@@ -86,12 +86,7 @@ if ($validar == null || $validar = '') {
                     <div class="col-6 col-md-9">
                       <select class="form-select" type="number" id="rol" name="rol">
                         <option value="1">Administrador</option>
-                        <option value="2">Evaluador - P1</option>
-                        <option value="3">Evaluador - P2</option>
-                        <option value="4">Evaluador - P3</option>
-                        <option value="5">Evaluador - P4</option>
-                        <option value="6">Evaluador - P5</option>
-                        <option value="7">Evaluador - DDHH</option>
+                        <option value="2">Evaluador</option>
                         <option value="8">Comandante de la Unidad Evaluada</option>
                       </select>
                     </div>

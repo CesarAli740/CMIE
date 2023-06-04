@@ -1,3 +1,7 @@
+<?php
+$rol = $_SESSION['rol']; 
+$nombre_division = $_SESSION['division'];
+?>
 <!doctype html>
 <html lang="es">
 
@@ -196,6 +200,7 @@
   p.navbar3 {
     margin: 0.25rem;
   }
+
   a.navbar3 {
     margin: 0.25rem;
   }
@@ -235,7 +240,8 @@
   .show {
     display: block;
   }
-  .imagen_logo{
+
+  .imagen_logo {
     width: 3rem;
     height: auto;
   }
@@ -248,8 +254,18 @@
   integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
 
 <body>
+  <?php
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  $consulta = "SELECT rol FROM permisos WHERE id = $rol";
+  $resultado = mysqli_query($conexion, $consulta);
+  if ($fila = mysqli_fetch_assoc($resultado)) {
+      $nombre_rol = $fila['rol'];
+  }
+  
+  ?>
   <nav class="navbar2">
     <a class="navbar3">CMIE</a>
+    <a class="navbar3"><?php echo $nombre_rol;?> - <?php echo $nombre_division;?></a>
     <p class="navbar3" id="fecha"></p>
     <a href="../includes/_sesion/cerrarSesion.php"><i class="fa fa-power-off"
         style="color: #FFF; margin-right: 1rem;"></i> </a>
@@ -280,9 +296,22 @@
     </button>
     <img class="imagen_logo" src="../img/ejercito_logo.ico" alt="Logo" class="logo">
     <nav class="navbar-menu">
-      <button type="button" onclick="window.location.href ='../vista_admin/principal.php'" class="active">Inicio</button>
-      <button type="button" onclick="window.location.href ='../views/user.php'" class="active">Usuarios</button>
-      <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
+      <?php
+      if ($rol == 1) {
+        ?>
+        <button type="button" onclick="window.location.href ='../vista_admin/principal.php'"
+          class="active">Inicio</button>
+        <button type="button" onclick="window.location.href ='../views/user.php'" class="active">Usuarios</button>
+        <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
+        <?php
+      } else if ($rol == 2) {
+        ?>
+          <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
+            class="active">Inicio</button>
+          <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
+        <?php
+      }
+      ?>
     </nav>
   </nav>
   <script type="text/javascript">const toggleMenuOpen = () => document.body.classList.toggle("open");</script>

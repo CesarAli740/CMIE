@@ -36,58 +36,33 @@ if ($validar == null || $validar = '') {
     $o = 2;
     while ($o < 8) {
         $conn = mysqli_connect("localhost", "root", "", "CMIE");
-        $sql = "SELECT AVG(nota) AS media FROM unidadejer WHERE unidadejer.id_factores = $unidad AND unidadejer.rol = $o AND unidadejer.tipo = 1";
-        $result = $conn->query($sql);
-        $query = "SELECT AVG(nota) AS media FROM unidadejer WHERE unidadejer.id_factores = $unidad AND unidadejer.rol = $o AND unidadejer.tipo = 2";
-        $resultado = $conn->query($query);
         $sql3 = "SELECT notas_finales.personal, notas_finales.inteligencia, notas_finales.operaciones, notas_finales.logistica, notas_finales.accion_civica, notas_finales.derechos_humanos FROM notas_finales WHERE notas_finales.id_unidad = $unidad";
         $result3 = $conn->query($sql3);
         while ($row = $result3->fetch_assoc()) {
             if ($o == 2) {
                 $personal = $row['personal'];
-                $valor1 = $personal * 0.1666667;
+                $valor1 = $personal * 0.166667;
             } else if ($o == 3) {
                 $inteligencia = $row['inteligencia'];
-                $valor2 = $inteligencia * 0.1666667;
+                $valor2 = $inteligencia * 0.166667;
             } else if ($o == 4) {
                 $operaciones = $row['inteligencia'];
-                $valor3 = $inteligencia * 0.1666667;
+                $valor3 = $inteligencia * 0.166667;
             } else if ($o == 5) {
                 $logistica = $row['logistica'];
-                $valor4 = $logistica * 0.1666667;
+                $valor4 = $logistica * 0.166667;
             } else if ($o == 6) {
                 $accion_civica = $row['accion_civica'];
-                $valor5 = $accion_civica * 0.1666667;
+                $valor5 = $accion_civica * 0.166667;
             } else if ($o == 7) {
                 $derechos_humanos = $row['derechos_humanos'];
-                $valor6 = $derechos_humanos * 0.1666667;
+                $valor6 = $derechos_humanos * 0.166667;
             }
         }
 
         $mediatotalfinal = $valor1 + $valor2 + $valor3 + $valor4 + $valor5 + $valor6;
         $mediatotalfinal = round($mediatotalfinal, 2);
-        if ($result->num_rows > 0 and $resultado->num_rows > 0) {
-            // Obtener el valor de la media
-            $row = $result->fetch_assoc();
-            $media = $row["media"];
-            $media = round($media, 2);
-
-            $row2 = $resultado->fetch_assoc();
-            $media2 = $row2["media"];
-            $media2 = round($media2, 2);
-
-            $mediafinal = ($media + $media2) / 2;
-
-            $mediafinal_array[] = $mediafinal; // Agregar $mediafinal al arreglo
-    
-
-
-
-            ?>
-            <?php
-        } else {
-            echo "No se encontraron resultados.";
-        }
+        
         $o++;
     }
     ?>
