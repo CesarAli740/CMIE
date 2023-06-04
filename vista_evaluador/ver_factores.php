@@ -1,18 +1,16 @@
 <?php
-
 session_start();
 error_reporting(0);
 
-$evaluador = $_GET['id'];
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
 $rol = $_SESSION['rol'];
+
 
 if ($validar == null || $validar = '') {
     header("Location: ../includes/login.php");
     die();
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,43 +18,10 @@ if ($validar == null || $validar = '') {
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mi Página</title>
-    <link rel="stylesheet" type="text/css" href="./principal.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
         integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
         crossorigin="anonymous"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-
-        function actualizarValor(valor, factores2, unidad) {
-            $.ajax({
-                url: './actualizar.php',
-                method: 'POST',
-                data: { valor: valor, factores2: factores2, unidad: unidad },
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        }
-
-        function actualizarValor2(valor, factores2, unidad) {
-            $.ajax({
-                url: './actualizar2.php',
-                method: 'POST',
-                data: { valor: valor, factores2: factores2, unidad: unidad },
-                success: function (response) {
-                    console.log(response);
-                },
-                error: function (xhr, status, error) {
-                    console.error(error);
-                }
-            });
-        }
-
-    </script>
+    
 </head>
 <?php
 
@@ -78,8 +43,8 @@ if ($validar == null || $validar = '') {
 
 
 <body>
-    <form action="../includes/validar_factor.php" method="POST">
         <br>
+
         <div class="container">
             <table class="table table-bordered table-active table-striped">
                 <thead class="thead-active">
@@ -91,7 +56,9 @@ if ($validar == null || $validar = '') {
                     <tr>
                         <td>
                             <center>
-                                Visualizando: <?php echo $_SESSION['nombre']; ?>
+                                Editando: <strong>
+                                    <?php echo $_SESSION['nombre']; ?>
+                                </strong>
                             </center>
                         </td>
                     </tr>
@@ -100,153 +67,155 @@ if ($validar == null || $validar = '') {
         </div>
 
 
-        <div class="container">
-            <table class="table table-bordered table-active table-striped">
-                <thead class="thead-active">
-                    <tr>
-                        <th>
-                            <center>Presencia o Ausencia</center>
-                        </th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="container">
+        <?php
+        $conc = "c" . $unidad;
+        ?>
 
-            <table class="table table-bordered table-active table-striped">
-                <thead class="thead-active">
-                    <tr>
-                        <th>
-                            <center>Factores</center>
-                        </th>
-                        <th>
-                            <center>Nota
-                            </center>
-                        </th>
-                    </tr>
-                </thead>
-                <col style="width:60%;" />
-                <col style="width:40%;" />
+        <?php
+        $a = $_GET['id'];
+        $a = $a - 1;
+            $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+            $SQL = "SELECT notas_factores.id, notas_factores.nombre, notas_factores.$conc FROM notas_factores WHERE notas_factores.tipo = '$a';";
+            $dato = mysqli_query($conexion, $SQL);
 
-                <?php
-
-                $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-                $SQL = "SELECT unidadejer.id_unidad, unidadejer.factores, unidadejer.nota, unidadejer.id_factores FROM unidadejer WHERE unidadejer.tipo = 1 AND unidadejer.rol = '$evaluador' AND unidadejer.id_factores = '$unidad';";
-                $dato = mysqli_query($conexion, $SQL);
-
-                if ($dato->num_rows > 0) {
-                    while ($fila = mysqli_fetch_array($dato)) {
-                        ?>
-
-                        <tbody>
+            if ($a == 1) {
+                ?>
+                <div class="container">
+                    <table class="table table-bordered table-active table-striped">
+                        <thead class="thead-active">
                             <tr>
-                                <td>
-                                    <?php echo $fila['factores']; ?>
-                                </td>
-                                <td>
-                                            <center>
-                                                <p style="font-weight: bold; font-size: x-large">
-                                                    <strong><?php echo $fila['nota']; ?></strong>
-                                                </p>
-                                            </center>
-                            </td>
+                                <th>
+                                    <center>PERSONAL</center>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <?php
+            } else if ($a == 2) {
+                ?>
+                    <div class="container">
+                        <table class="table table-bordered table-active table-striped">
+                            <thead class="thead-active">
+                                <tr>
+                                    <th>
+                                        <center>INTELIGENCIA</center>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                <?php
+            } else if ($a == 3) {
+                ?>
+                        <div class="container">
+                            <table class="table table-bordered table-active table-striped">
+                                <thead class="thead-active">
+                                    <tr>
+                                        <th>
+                                            <center>OPERACIONES</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                <?php
+            } else if ($a == 4) {
+                ?>
+                            <div class="container">
+                                <table class="table table-bordered table-active table-striped">
+                                    <thead class="thead-active">
+                                        <tr>
+                                            <th>
+                                                <center>LOGÍSTICA</center>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                <?php
+            } else if ($a == 5) {
+                ?>
+                                <div class="container">
+                                    <table class="table table-bordered table-active table-striped">
+                                        <thead class="thead-active">
+                                            <tr>
+                                                <th>
+                                                    <center>ACCIÓN CIVICA</center>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                <?php
+            } else if ($a == 6) {
+                ?>
+                                    <div class="container">
+                                        <table class="table table-bordered table-active table-striped">
+                                            <thead class="thead-active">
+                                                <tr>
+                                                    <th>
+                                                        <center>DERECHOS HUMANOS</center>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+            <?php } ?>
+            </div>
+            <div class="container">
+
+                <table class="table table-responsive-sm table-bordered table-active table-striped">
+                    <thead class="thead-active">
+                        <tr>
+                            <th>
+                                <center>Factores</center>
+                            </th>
+                            <th>
+                                <center>Nota
+                                </center>
+                            </th>
+                        </tr>
+                    </thead>
+                    <col style="width:60%;" />
+                    <col style="width:20%;" />
+
+                    <?php
+                    if ($dato->num_rows > 0) {
+                        while ($fila = mysqli_fetch_array($dato)) {
+                            ?>
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <?php echo $fila['nombre']; ?>
+                                    </td>
+                                    <td>
+                                        <center><strong><?php echo $fila[$conc]; ?></strong></center>
+                                    </td>
+                                </tr>
+                                <?php
+                        }
+                    } else {
+
+                        ?>
+                            <tr class="text-center">
+                                <td colspan="16">No existen registros</td>
                             </tr>
                             <?php
+
                     }
-                } else {
-
-                    ?>
-                        <tr class="text-center">
-                            <td colspan="16">No existen registros</td>
-                        </tr>
-                        <?php
-
-                }
-
-                ?>
+        
+        ?>
                 </tbody>
             </table>
         </div>
-    </form>
+
+
+        <center>
+            <div class="mb-3">
+
+                <a href="./coeficiente_de_efectividad.php" class="botonr">Cancelar</a>
+
+            </div>
+        </center>
 </body>
-</form>
-
-
-
-<form action="../includes/validar_factor.php" method="POST">
-    <div class="container">
-        <table class="table table-bordered table-active table-striped">
-            <thead class="thead-active">
-                <tr>
-                    <th>
-                        <center>Grado del Factor a ser Medido</center>
-                    </th>
-                </tr>
-            </thead>
-        </table>
-    </div>
-    <div class="container">
-
-        <table class="table table-bordered table-active table-striped">
-            <thead class="thead-active">
-                <tr>
-                    <th>
-                        <center>Factores</center>
-                    </th>
-                    <th>
-                        <center>Nota
-                        </center>
-                    </th>
-                </tr>
-            </thead>
-            <col style="width:60%;" />
-            <col style="width:40%;" />
-
-            <?php
-
-            $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-            $SQL = "SELECT unidadejer.id_unidad, unidadejer.factores, unidadejer.nota, unidadejer.id_factores FROM unidadejer WHERE unidadejer.tipo = 2 AND unidadejer.rol = '$evaluador' AND unidadejer.id_factores = '$unidad';";
-            $dato = mysqli_query($conexion, $SQL);
-
-
-            if ($dato->num_rows > 0) {
-                while ($fila = mysqli_fetch_array($dato)) {
-                    ?>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <?php echo $fila['factores']; ?>
-                            </td>
-                            <td>
-                                            <center>
-                                                <p style="font-weight: bold; font-size: x-large">
-                                                    <strong><?php echo $fila['nota']; ?></strong>
-                                                </p>
-                                            </center>
-                            </td>
-                        </tr>
-                        <?php
-                }
-            } else {
-
-                ?>
-                    <tr class="text-center">
-                        <td colspan="16">No existen registros</td>
-                    </tr>
-                    <?php
-
-            }
-
-            ?>
-            </tbody>
-        </table>
-    </div>
-    <center>
-        <div class="mb-3">
-            <a href="./coeficiente_de_efectividad.php" class="botonr">Volver</a>
-
-        </div>
-    </center>
-</form>
-</body>
-</form>

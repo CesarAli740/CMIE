@@ -160,7 +160,7 @@ if ($validar == null || $validar = '') {
                     } else if ($c == 5) {
                         $dimen = 'LOGISTICA';
                     } else if ($c == 6) {
-                        $dimen = 'ACC. CIVICA';
+                        $dimen = 'ACCIÓN CÍVICA';
                     } else if ($c == 7) {
                         $dimen = 'DERECHOS HUMANOS';
                     }

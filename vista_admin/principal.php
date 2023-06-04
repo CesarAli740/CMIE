@@ -77,7 +77,7 @@ $id_unidad = $_SESSION['id_unidad'];
 
 <body>
         <div class="titulo">
-            <h1 class="display-4" >Normas y Procedimientos para la Ejecucion del Control a la Gestión Estrategica</h1></div>
+            <h1 class="display-4" >Normas y Procedimientos para la Ejecución del Control a la Gestión Estratégica</h1></div>
         <div class="botones">
           
           <button class="boton" onClick="window.location.href='./cuadro_de_mando.php';">Cuadro de Mando de Control</button>

@@ -22,12 +22,14 @@ $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
 $rol = $_SESSION['rol'];
 $nombre_unidad = $_SESSION['unidad'];
+$nombre_division = $_SESSION['division'];
 
 if ($validar == null || $validar = '') {
-    header("Location: ../includes/login.php");
-    die();
+  header("Location: ../includes/login.php");
+  die();
 }
 
+$nota_final = '0';
 
 if (isset($_POST['subir_nota'])) {
   extract($_POST);
@@ -36,36 +38,90 @@ if (isset($_POST['subir_nota'])) {
       $consulta2 = "UPDATE notas_finales SET 
     personal=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
       mysqli_query($conexion, $consulta2);
+
+
+      $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
+      $resultado = mysqli_query($conexion, $consulta);
+      if ($resultado) {
+        $fila = mysqli_fetch_assoc($resultado);
+        $promedio = $fila['promedio'];
+        $nota_final = $nota_final + $promedio;
+      }
+      mysqli_free_result($resultado);
+
+
     } else
       if ($x == 2) {
         $consulta2 = "UPDATE notas_finales SET 
     inteligencia=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
         mysqli_query($conexion, $consulta2);
+        $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
+        $resultado = mysqli_query($conexion, $consulta);
+        if ($resultado) {
+          $fila = mysqli_fetch_assoc($resultado);
+          $promedio = $fila['promedio'];
+          $nota_final = $nota_final + $promedio;
+        }
+        mysqli_free_result($resultado);
       } else
         if ($x == 3) {
           $consulta2 = "UPDATE notas_finales SET 
     operaciones=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
           mysqli_query($conexion, $consulta2);
+          $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
+          $resultado = mysqli_query($conexion, $consulta);
+          if ($resultado) {
+            $fila = mysqli_fetch_assoc($resultado);
+            $promedio = $fila['promedio'];
+            $nota_final = $nota_final + $promedio;
+          }
+          mysqli_free_result($resultado);
         } else
           if ($x == 4) {
             $consulta2 = "UPDATE notas_finales SET 
     logistica=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
             mysqli_query($conexion, $consulta2);
+            $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
+            $resultado = mysqli_query($conexion, $consulta);
+            if ($resultado) {
+              $fila = mysqli_fetch_assoc($resultado);
+              $promedio = $fila['promedio'];
+              $nota_final = $nota_final + $promedio;
+            }
+            mysqli_free_result($resultado);
           } else
             if ($x == 5) {
               $consulta2 = "UPDATE notas_finales SET 
     accion_civica=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
               mysqli_query($conexion, $consulta2);
+              $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
+              $resultado = mysqli_query($conexion, $consulta);
+              if ($resultado) {
+                $fila = mysqli_fetch_assoc($resultado);
+                $promedio = $fila['promedio'];
+                $nota_final = $nota_final + $promedio;
+              }
+              mysqli_free_result($resultado);
             } else
               if ($x == 6) {
                 $consulta2 = "UPDATE notas_finales SET 
     derechos_humanos=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
                 mysqli_query($conexion, $consulta2);
+                $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
+                $resultado = mysqli_query($conexion, $consulta);
+                if ($resultado) {
+                  $fila = mysqli_fetch_assoc($resultado);
+                  $promedio = $fila['promedio'];
+                  $nota_final = $nota_final + $promedio;
+                }
+                mysqli_free_result($resultado);
               }
-
   }
+  
+  $final = $nota_final / 6;
+  $consulta8 = "UPDATE notas_finales SET nota_final='$final' , division = '$nombre_division' WHERE notas_finales.id_unidad = " . $id_unidad . ";";
+  mysqli_query($conexion, $consulta8);
   mysqli_close($conexion);
-
   if ($rol == 1) {
     header('Location: ../vista_admin/factor_admin.php');
   } else if ($rol == 2) {

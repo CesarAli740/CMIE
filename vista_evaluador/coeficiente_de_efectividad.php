@@ -41,26 +41,26 @@ if ($validar == null || $validar = '') {
         while ($row = $result3->fetch_assoc()) {
             if ($o == 2) {
                 $personal = $row['personal'];
-                $valor1 = $personal * 0.166667;
+                $valor1 = $personal;
             } else if ($o == 3) {
                 $inteligencia = $row['inteligencia'];
-                $valor2 = $inteligencia * 0.166667;
+                $valor2 = $inteligencia;
             } else if ($o == 4) {
-                $operaciones = $row['inteligencia'];
-                $valor3 = $inteligencia * 0.166667;
+                $operaciones = $row['operaciones'];
+                $valor3 = $operaciones;
             } else if ($o == 5) {
                 $logistica = $row['logistica'];
-                $valor4 = $logistica * 0.166667;
+                $valor4 = $logistica;
             } else if ($o == 6) {
                 $accion_civica = $row['accion_civica'];
-                $valor5 = $accion_civica * 0.166667;
+                $valor5 = $accion_civica;
             } else if ($o == 7) {
                 $derechos_humanos = $row['derechos_humanos'];
-                $valor6 = $derechos_humanos * 0.166667;
+                $valor6 = $derechos_humanos;
             }
         }
 
-        $mediatotalfinal = $valor1 + $valor2 + $valor3 + $valor4 + $valor5 + $valor6;
+        $mediatotalfinal = ($valor1 + $valor2 + $valor3 + $valor4 + $valor5 + $valor6)/6;
         $mediatotalfinal = round($mediatotalfinal, 2);
         
         $o++;
@@ -135,7 +135,7 @@ if ($validar == null || $validar = '') {
                     } else if ($c == 5) {
                         $dimen = 'LOGISTICA';
                     } else if ($c == 6) {
-                        $dimen = 'ACC. CIVICA';
+                        $dimen = 'ACCIÓN CÍVICA';
                     } else if ($c == 7) {
                         $dimen = 'DERECHOS HUMANOS';
                     }

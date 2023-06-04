@@ -103,7 +103,7 @@ $nombre_gunidad = $_SESSION['gunidad']; ?>
         </select></center>
     </div>
   <div class="titulo">
-    <h1 class="display-4">Normas y Procedimientos para la Ejecucion del Control a la Gestión Estrategica</h1>
+    <h1 class="display-4">Normas y Procedimientos para la Ejecución del Control a la Gestión Estratégica</h1>
   </div>
   <div class="botones">
 

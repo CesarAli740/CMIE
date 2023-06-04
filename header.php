@@ -308,7 +308,7 @@ $nombre_division = $_SESSION['division'];
         ?>
           <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
             class="active">Inicio</button>
-          <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
+          <button type="button" onclick="window.location.href ='../vista_evaluador/ranking.php'" class="active">Ranking</button>
         <?php
       }
       ?>
@@ -317,10 +317,6 @@ $nombre_division = $_SESSION['division'];
   <script type="text/javascript">const toggleMenuOpen = () => document.body.classList.toggle("open");</script>
 </body>
 <style>
-  body {
-    /* 
-    background-image: url('../img/FondoMulti.svg'); */
-  }
 
   a {
     text-decoration: none;

@@ -76,7 +76,7 @@ if ($validar == null || $validar = '') {
                 <thead class="thead-active">
                     <tr>
                         <th>
-                            <center>CUADRO DE MANDO INTEGRAL DEL EJERCITO</center>
+                            <center>CUADRO DE MANDO INTEGRAL DEL EJÉRCITO</center>
                         </th>
                     </tr>
                     <tr>
@@ -169,7 +169,7 @@ if ($validar == null || $validar = '') {
                                         <thead class="thead-active">
                                             <tr>
                                                 <th>
-                                                    <center>ACCIÓN CIVICA</center>
+                                                    <center>ACCIÓN CÍVICA</center>
                                                 </th>
                                             </tr>
                                         </thead>
