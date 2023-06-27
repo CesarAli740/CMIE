@@ -2,9 +2,6 @@
 
 require_once("_db.php");
 
-
-
-
 if (isset($_POST['accion'])) {
   switch ($_POST['accion']) {
     //casos de registros
@@ -12,6 +9,19 @@ if (isset($_POST['accion'])) {
       editar_registro();
       break;
 
+    case 'editar_division':
+      editar_division();
+      break;
+    case 'eliminar_division':
+      eliminar_division();
+      break;
+
+    case 'editar_unidad':
+      editar_unidad();
+      break;
+    case 'eliminar_unidad':
+      eliminar_unidad();
+      break;
     case 'editar_registro2':
       editar_registro2();
       break;
@@ -28,6 +38,52 @@ if (isset($_POST['accion'])) {
 
   }
 
+}
+
+
+function eliminar_unidad()
+{
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  extract($_POST);
+
+  $consulta = "DELETE FROM unidad WHERE id= $id AND division = '$id2'";
+  mysqli_query($conexion, $consulta);
+
+  header('Location: ../vista_admin/ver_unidades.php?id='.$id2);
+}
+function editar_unidad()
+{
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  extract($_POST);
+  $consulta = "UPDATE unidad SET nombre = '$nombre' WHERE id = '$id' AND division = '$id2'";
+  mysqli_query($conexion, $consulta);
+
+  header('Location: ../vista_admin/ver_unidades.php?id='.$id2);
+}
+
+
+function eliminar_division()
+{
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  extract($_POST);
+  $id = $_POST['id'];
+
+  $consulta1 = "DELETE FROM unidad WHERE division= $id";
+  mysqli_query($conexion, $consulta1);
+  $consulta = "DELETE FROM division WHERE id= $id";
+  mysqli_query($conexion, $consulta);
+
+  header('Location: ../vista_admin/division_unidad.php');
+}
+function editar_division()
+{
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  extract($_POST);
+  $consulta = "UPDATE division SET  nombre = '$nombre' WHERE id = '$id' ";
+
+  mysqli_query($conexion, $consulta);
+
+  header('Location: ../vista_admin/division_unidad.php');
 }
 
 function editar_registro2()
@@ -354,9 +410,10 @@ function editar_registro2()
   $_SESSION['rol'] = $filas2['rol'];
   $_SESSION['unidad'] = $filas2['unidad'];
 
-  if (isset($_POST['coeficiente'])){
+  if (isset($_POST['coeficiente'])) {
     header('Location: ../vista_evaluador/coeficiente_de_efectividad.php');
-  }if (isset($_POST['evaluar'])){
+  }
+  if (isset($_POST['evaluar'])) {
     header('Location: ../vista_evaluador/evaluar.php');
   }
 
@@ -729,7 +786,7 @@ function acceso_user()
 
     header("Location: ../vista_admin/principal.php");
 
-  } else if ($filas['rol'] == 2) { //evaluadores
+  } else if ($filas['rol'] == 2 or $filas['rol'] == 3 or $filas['rol'] == 4 or $filas['rol'] == 5 or $filas['rol'] == 6 or $filas['rol'] == 7 or $filas['rol'] == 8 or $filas['rol'] == 9) { //evaluadores
 
     header("Location: ../vista_evaluador/principal.php");
 

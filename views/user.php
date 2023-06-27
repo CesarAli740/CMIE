@@ -67,7 +67,6 @@ if ($validar == null || $validar = '') {
             <th>Telefono</th>
             <!--    <th>Fecha</th> -->
             <th>Rol</th>
-            <th>Gran Unidad</th>
             <th>Division</th>
             <th>Unidad</th>
             <th>Acciones</th>
@@ -79,7 +78,7 @@ if ($validar == null || $validar = '') {
 
           $conexion = mysqli_connect("localhost", "root", "", "CMIE");
           $SQL = "SELECT user.id, user.nombre, user.apPAt, user.apMAt, user.correo, user.grado, user.password, user.telefono,
-user.fecha, permisos.rol, user.gunidad, user.division, user.unidad FROM user
+user.fecha, permisos.rol, user.division, user.unidad FROM user
 LEFT JOIN permisos ON user.rol = permisos.id";
           $dato = mysqli_query($conexion, $SQL);
 
@@ -109,9 +108,6 @@ LEFT JOIN permisos ON user.rol = permisos.id";
                 <!-- <td><?php echo $fila['fecha']; ?></td> -->
                 <td>
                   <?php echo $fila['rol']; ?>
-                </td>
-                <td>
-                  <?php echo $fila['gunidad']; ?>
                 </td>
                 <td>
                   <?php echo $fila['division']; ?>

@@ -1,4 +1,14 @@
 <?php
+session_start();
+error_reporting(0);
+$validar = $_SESSION['nombre'];
+
+if ($validar == null || $validar = '') {
+    header("Location: ../includes/login.php");
+    die();
+}
+?>
+<?php
 $rol = $_SESSION['rol']; 
 $nombre_division = $_SESSION['division'];
 ?>
@@ -301,6 +311,7 @@ $nombre_division = $_SESSION['division'];
         ?>
         <button type="button" onclick="window.location.href ='../vista_admin/principal.php'"
           class="active">Inicio</button>
+        <button type="button" onclick="window.location.href ='../vista_admin/division_unidad.php'" class="active">Division/Unidad</button>
         <button type="button" onclick="window.location.href ='../views/user.php'" class="active">Usuarios</button>
         <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
         <?php
