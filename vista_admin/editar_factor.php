@@ -14,6 +14,7 @@ if( $validar == null || $validar = ''){
 }
 
 $id= $_GET['id'];
+$id_dimen= $_GET['id_dimen'];
 $conexion= mysqli_connect("localhost", "root", "", "CMIE");
 $consulta= "SELECT * FROM notas_factores WHERE id = $id";
 $resultado = mysqli_query($conexion, $consulta);
@@ -50,7 +51,7 @@ $factor = mysqli_fetch_assoc($resultado);
 <body id="page-top">
 
 
-<form  action="../includes/_function_factor.php" method="POST">
+<form  action="../includes/_functions.php" method="POST">
 <div id="login" >
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
@@ -63,7 +64,8 @@ $factor = mysqli_fetch_assoc($resultado);
                             <div class="form-group">
                                 <label for="nombre" class="form-label">Factor:</label>
                                 <input type="text"  id="nombre" name="nombre" class="form-control" value="<?php echo $factor['nombre'];?>"required>
-                                <input type="hidden" name="accion" value="editar_registro">
+                                <input type="hidden" name="accion" value="editar_factor">
+                                <input type="hidden" name="id_dimen" value="<?php echo $_GET['id_dimen']?>">
                                 <input type="hidden" name="id" value="<?php echo $id ?>">
                             </div>
                            <br>
@@ -71,7 +73,7 @@ $factor = mysqli_fetch_assoc($resultado);
                                 <div class="mb-3">
                                     
                                 <button type="submit" class="btn btn-success" >Editar</button>
-                               <a href="./factor_admin.php" class="btn btn-danger">Cancelar</a>
+                               <a href="./ver_factores.php?id=<?php echo $_GET['id_dimen']?>" class="btn btn-danger">Cancelar</a>
                                
                             </div>
                             </div>

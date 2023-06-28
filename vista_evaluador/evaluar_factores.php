@@ -3,7 +3,7 @@
 session_start();
 error_reporting(0);
 
-$id_dimension = $_GET['id'];
+$id_dimension = $_SESSION['rol'] - 1;
 
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
@@ -37,12 +37,6 @@ error_reporting(0);
 
 <body>
     <br>
-    <center>
-            <div>
-                <a class="boton" href="./agregarFactores.php?id=<?php echo $_GET['id'] ?>">Nuevo Factor
-                    <i class="fa fa-plus"></i> </a>
-            </div>
-        </center><br>
     <div class="container">
         <table class="table table-bordered table-active table-striped">
             <thead class="thead-active">
@@ -54,7 +48,7 @@ error_reporting(0);
                 <tr>
                     <td>
                         <center>
-                            Visualizando:
+                            Evaluando:
                             <?php echo $_SESSION['nombre']; ?>
                         </center>
                     </td>
@@ -77,9 +71,6 @@ error_reporting(0);
                         <th>
                             <center>Subfactores</center>
                         </th>
-                        <th>
-                            <center>Acciones</center>
-                        </th>
                     </tr>
                 </thead>
 
@@ -100,18 +91,9 @@ error_reporting(0);
                                 </td>
                                 <td>
                                     <center>
-                                        <a class="btn btn-success" href="./ver_subfactores.php?id=<?php echo $fila['id']?>&id_dimen=<?php echo $_GET['id']?>">
+                                        <a class="btn btn-success"
+                                            href="./evaluar_subfactores.php?id=<?php echo $fila['id'] ?>&idu=<?php echo $_GET['id'] ?>">
                                             <i class="fas fa-eye"></i></a>
-                                    </center>
-                                </td>
-                                <td>
-                                    <center>
-                                        <a class="btn btn-warning"
-                                            href="editar_factor.php?id=<?php echo $fila['id']; ?>&id_dimen=<?php echo $_GET['id'] ?>">
-                                            <i class="fas fa-edit"></i> </a>
-                                        <a class="btn btn-danger"
-                                            href="eliminar_factor.php?id=<?php echo $fila['id']; ?>&id_dimen=<?php echo $_GET['id'] ?>">
-                                            <i class="fas fa-trash"></i></a>
                                     </center>
                                 </td>
                             </tr>
@@ -133,7 +115,10 @@ error_reporting(0);
         </div>
         <center>
             <div class="mb-3">
-                <a href="./factor_admin.php" class="botonr">Volver</a>
+                <input type="submit" value="Guardar" class="boton" name="subir_nota_dimension">
+                <input type="hidden" name="id_dimension" id="id_dimension" value="<?php echo $id_dimension; ?>">
+                <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $_GET['id']; ?>">
+                <a href="./principal.php" class="botonr">Volver</a>
             </div>
         </center>
     </form>

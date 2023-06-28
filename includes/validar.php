@@ -40,7 +40,18 @@ if (isset($_POST['registrar_unidad'])) {
     mysqli_query($conexion, $consulta);
 
 
-
+    $sql = "SELECT * FROM unidad WHERE division = '$id_division' AND nombre = '$unidad';";
+    $result = mysqli_query($conexion, $sql);
+        while ($fila = mysqli_fetch_assoc($result)) {
+            $id_unidad = $fila['id'];
+        }
+        $conc = 'c'.$id_unidad;
+        $sql2 = "ALTER TABLE dimensiones ADD $conc DECIMAL(5,2);";
+        $sql3 = "ALTER TABLE notas_factores ADD $conc DECIMAL(5,2);";
+        $sql4 = "ALTER TABLE subfactor ADD $conc DECIMAL(5,2);";
+        mysqli_query($conexion, $sql2);
+        mysqli_query($conexion, $sql3);
+        mysqli_query($conexion, $sql4);
     header('Location: ../vista_admin/ver_unidades.php?id=' . $id_division);
   }
 }

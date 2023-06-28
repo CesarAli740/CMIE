@@ -29,103 +29,55 @@ if ($validar == null || $validar = '') {
   die();
 }
 
-$nota_final = '0';
 
-if (isset($_POST['subir_nota'])) {
+if (isset($_POST['subir_nota_factor'])) {
   extract($_POST);
-  for ($x = 1; $x <= 6; $x++) {
-    if ($x == 1) {
-      $consulta2 = "UPDATE notas_finales SET 
-    personal=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
-      mysqli_query($conexion, $consulta2);
 
+  $conc = 'c' . $id_unidad;
 
-      $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
-      $resultado = mysqli_query($conexion, $consulta);
-      if ($resultado) {
-        $fila = mysqli_fetch_assoc($resultado);
-        $promedio = $fila['promedio'];
-        $nota_final = $nota_final + $promedio;
-      }
-      mysqli_free_result($resultado);
+  $consulta = "UPDATE notas_factores SET 
+    `$conc` = (SELECT AVG(`$conc`) FROM subfactor WHERE subfactor.tipo = '$id_factor') 
+    WHERE notas_factores.id = $id_factor";
 
+  mysqli_query($conexion, $consulta);
 
-    } else
-      if ($x == 2) {
-        $consulta2 = "UPDATE notas_finales SET 
-    inteligencia=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
-        mysqli_query($conexion, $consulta2);
-        $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
-        $resultado = mysqli_query($conexion, $consulta);
-        if ($resultado) {
-          $fila = mysqli_fetch_assoc($resultado);
-          $promedio = $fila['promedio'];
-          $nota_final = $nota_final + $promedio;
-        }
-        mysqli_free_result($resultado);
-      } else
-        if ($x == 3) {
-          $consulta2 = "UPDATE notas_finales SET 
-    operaciones=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
-          mysqli_query($conexion, $consulta2);
-          $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
-          $resultado = mysqli_query($conexion, $consulta);
-          if ($resultado) {
-            $fila = mysqli_fetch_assoc($resultado);
-            $promedio = $fila['promedio'];
-            $nota_final = $nota_final + $promedio;
-          }
-          mysqli_free_result($resultado);
-        } else
-          if ($x == 4) {
-            $consulta2 = "UPDATE notas_finales SET 
-    logistica=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
-            mysqli_query($conexion, $consulta2);
-            $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
-            $resultado = mysqli_query($conexion, $consulta);
-            if ($resultado) {
-              $fila = mysqli_fetch_assoc($resultado);
-              $promedio = $fila['promedio'];
-              $nota_final = $nota_final + $promedio;
-            }
-            mysqli_free_result($resultado);
-          } else
-            if ($x == 5) {
-              $consulta2 = "UPDATE notas_finales SET 
-    accion_civica=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
-              mysqli_query($conexion, $consulta2);
-              $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
-              $resultado = mysqli_query($conexion, $consulta);
-              if ($resultado) {
-                $fila = mysqli_fetch_assoc($resultado);
-                $promedio = $fila['promedio'];
-                $nota_final = $nota_final + $promedio;
-              }
-              mysqli_free_result($resultado);
-            } else
-              if ($x == 6) {
-                $consulta2 = "UPDATE notas_finales SET 
-    derechos_humanos=(SELECT AVG($conc) FROM notas_factores WHERE notas_factores.tipo = $x) WHERE notas_finales.id_unidad = " . $id_unidad . ";";
-                mysqli_query($conexion, $consulta2);
-                $consulta = "SELECT AVG($conc) as promedio FROM notas_factores WHERE notas_factores.tipo = $x";
-                $resultado = mysqli_query($conexion, $consulta);
-                if ($resultado) {
-                  $fila = mysqli_fetch_assoc($resultado);
-                  $promedio = $fila['promedio'];
-                  $nota_final = $nota_final + $promedio;
-                }
-                mysqli_free_result($resultado);
-              }
-  }
-  
-  $final = $nota_final / 6;
-  $consulta8 = "UPDATE notas_finales SET nota_final='$final' , division = '$nombre_division' WHERE notas_finales.id_unidad = " . $id_unidad . ";";
-  mysqli_query($conexion, $consulta8);
-  mysqli_close($conexion);
   if ($rol == 1) {
     header('Location: ../vista_admin/factor_admin.php');
-  } else if ($rol == 2) {
-    header('Location: ../vista_evaluador/coeficiente_de_efectividad.php');
+  } else if ($rol == 2 or $rol == 3 or $rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
+    header('Location: ../vista_evaluador/evaluar_factores.php?id=' . $id_unidad);
+  }
+}
+
+if (isset($_POST['subir_nota_dimension'])) {
+  extract($_POST);
+
+  $conc = 'c' . $id_unidad;
+
+  $consulta = "UPDATE dimensiones SET 
+    `$conc` = (SELECT AVG(`$conc`) FROM notas_factores WHERE notas_factores.tipo = '$id_dimension') 
+    WHERE dimensiones.id = $id_dimension";
+
+  mysqli_query($conexion, $consulta);
+
+  $conc = 'c' . $id_unidad;
+  $query = "SELECT ponderacion, $conc, ponderacion * $conc AS resultado FROM dimensiones";
+
+  $resultado = mysqli_query($conexion, $query);
+  $suma = 0;
+  while ($fila = mysqli_fetch_assoc($resultado)) {
+    $suma += $fila['resultado'];
+  }
+  echo $suma;
+
+  $consulta = "UPDATE unidad SET 
+  nota = '$suma' WHERE unidad.id = $id_unidad";
+
+  mysqli_query($conexion, $consulta);
+
+  if ($rol == 1) {
+    header('Location: ../vista_admin/factor_admin.php');
+  } else if ($rol == 2 or $rol == 3 or $rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
+    header('Location: ../vista_evaluador/coeficiente_de_efectividad.php?id='.$id_unidad);
   }
 }
 

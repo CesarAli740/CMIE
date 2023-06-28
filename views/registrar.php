@@ -88,9 +88,22 @@ if ($validar == null || $validar = '') {
                   <div class="row">
                     <div class="col-6 col-md-9">
                       <select class="form-select " type="number" id="rol" name="rol">
-                        <option value="1">Administrador</option>
-                        <option value="2">Evaluador</option>
-                        <option value="8">Comandante de la Unidad Evaluada</option>
+                        <?php
+                        $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+                        $SQL = "SELECT * FROM permisos;";
+                        $dato = mysqli_query($conexion, $SQL);
+                        if ($dato->num_rows > 0) {
+                          while ($fila = mysqli_fetch_array($dato)) {
+                            ?>
+                            <option value="<?php echo $fila['id'] ;?>"><?php echo $fila['rol'] ;?></option>
+                            <?php
+                          }
+                        } else {
+                          ?>
+                          <option value="">No Existen Registros</option>
+                          <?php
+                        }
+                        ?>
                       </select>
                     </div>
                   </div>
@@ -127,10 +140,10 @@ if ($validar == null || $validar = '') {
                 function loadUnidades() {
                   var divisionId = document.getElementById("division").value;
                   var unidadSelect = document.getElementById("unidad");
-                  unidadSelect.innerHTML = "<option value=''>Cargando...</option>"; 
+                  unidadSelect.innerHTML = "<option value=''>Cargando...</option>";
 
                   var xhr = new XMLHttpRequest();
-                  xhr.open("GET", "registrar_unidades.php?divisionId=" + divisionId, true); 
+                  xhr.open("GET", "registrar_unidades.php?divisionId=" + divisionId, true);
                   xhr.onreadystatechange = function () {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                       unidadSelect.innerHTML = "";

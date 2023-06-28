@@ -271,11 +271,17 @@ $nombre_division = $_SESSION['division'];
   if ($fila = mysqli_fetch_assoc($resultado)) {
       $nombre_rol = $fila['rol'];
   }
+  $consulta = "SELECT * FROM division WHERE id = $nombre_division";
+  $resultado = mysqli_query($conexion, $consulta);
+  if ($fila = mysqli_fetch_assoc($resultado)) {
+      $div_nombre = $fila['nombre'];
+  }
   
   ?>
   <nav class="navbar2">
+
     <a class="navbar3">CMIE</a>
-    <a class="navbar3"><?php echo $nombre_rol;?> - <?php echo $nombre_division;?></a>
+    <a class="navbar3"><?php echo $nombre_rol;?> - <?php echo $div_nombre;?></a>
     <p class="navbar3" id="fecha"></p>
     <a href="../includes/_sesion/cerrarSesion.php"><i class="fa fa-power-off"
         style="color: #FFF; margin-right: 1rem;"></i> </a>
@@ -315,7 +321,7 @@ $nombre_division = $_SESSION['division'];
         <button type="button" onclick="window.location.href ='../views/user.php'" class="active">Usuarios</button>
         <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
         <?php
-      } else if ($rol == 2) {
+      } else if ($rol == 2 or $rol == 3 or $rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
         ?>
           <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
             class="active">Inicio</button>

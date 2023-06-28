@@ -61,16 +61,10 @@ if ($validar == null || $validar = '') {
 
 <body>
     <form action="../includes/validar_factor.php" method="POST">
-        
-    <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $unidad; ?>">
+
+        <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $unidad; ?>">
         <br>
-        <center>
-            <div>
-                <a class="boton" href="./agregarFactores.php">Nuevo Factor
-                    <i class="fa fa-plus"></i> </a>
-            </div>
-        </center>
-        <br><br>
+        
         <div class="container">
             <table class="table table-bordered table-active table-striped">
                 <thead class="thead-active">
@@ -93,183 +87,46 @@ if ($validar == null || $validar = '') {
         </div>
 
 
-        <?php
-        $conc = "c" . $unidad;
-        ?>
 
-        <input type="hidden" value="<?php echo $conc; ?>" name="conc">
-        <?php
-        $a = 0;
-        while ($a <= 5) {
-            $a++;
-            $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-            $SQL = "SELECT notas_factores.id, notas_factores.nombre, notas_factores.$conc FROM notas_factores WHERE notas_factores.tipo = '$a';";
-            $dato = mysqli_query($conexion, $SQL);
+        <div class="container is-fluid">
 
-            if ($a == 1) {
-                ?>
-                <div class="container">
-                    <table class="table table-bordered table-active table-striped">
-                        <thead class="thead-active">
-                            <tr>
-                                <th>
-                                    <center>PERSONAL</center>
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
+        <table class="table table-responsive-sm table-striped table-active ">
+            <thead>
+                <tr>
+                    <th><center>Dimensiones</center></th>
+                    <th><center>Factores</center></th>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
-            } else if ($a == 2) {
-                ?>
-                    <div class="container">
-                        <table class="table table-bordered table-active table-striped">
-                            <thead class="thead-active">
-                                <tr>
-                                    <th>
-                                        <center>INTELIGENCIA</center>
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                <?php
-            } else if ($a == 3) {
-                ?>
-                        <div class="container">
-                            <table class="table table-bordered table-active table-striped">
-                                <thead class="thead-active">
-                                    <tr>
-                                        <th>
-                                            <center>OPERACIONES</center>
-                                        </th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                <?php
-            } else if ($a == 4) {
-                ?>
-                            <div class="container">
-                                <table class="table table-bordered table-active table-striped">
-                                    <thead class="thead-active">
-                                        <tr>
-                                            <th>
-                                                <center>LOGÍSTICA</center>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                <?php
-            } else if ($a == 5) {
-                ?>
-                                <div class="container">
-                                    <table class="table table-bordered table-active table-striped">
-                                        <thead class="thead-active">
-                                            <tr>
-                                                <th>
-                                                    <center>ACCIÓN CÍVICA</center>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                    </table>
-                                </div>
-                <?php
-            } else if ($a == 6) {
-                ?>
-                                    <div class="container">
-                                        <table class="table table-bordered table-active table-striped">
-                                            <thead class="thead-active">
-                                                <tr>
-                                                    <th>
-                                                        <center>DERECHOS HUMANOS</center>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                        </table>
-                                    </div>
-                <?php
-            }
-            ?>
-            <div class="container">
-
-                <table class="table table-responsive-sm table-bordered table-active table-striped">
-                    <thead class="thead-active">
-                        <tr>
-                            <th>
-                                <center>Factores</center>
-                            </th>
-                            <th>
-                                <center>Nota
-                                </center>
-                            </th>
-                            <th>
-                                <center>Opciones</center>
-                            </th>
-                        </tr>
-                    </thead>
-                    <col style="width:60%;" />
-                    <col style="width:20%;" />
-                    <col style="width:15%;" />
-
-                    <?php
-                    if ($dato->num_rows > 0) {
-                        while ($fila = mysqli_fetch_array($dato)) {
-                            ?>
-
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <?php echo $fila['nombre']; ?>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <div class="container">
-                                                <div class="row">
-                                                    <div class="col-6 col-md-4">
-                                                        <select class="selectpicker"
-                                                            onchange="actualizarValor(this.value, '<?php echo $conc ?>', '<?php echo $a ?>', '<?php echo $fila['id'] ?>')">
-                                                            <option value="0">-- Seleccionar --</option>
-                                                            <option value="0">NULA</option>
-                                                            <option value="25">BAJA</option>
-                                                            <option value="50">MEDIA</option>
-                                                            <option value="75">MAYOR</option>
-                                                            <option value="100">TOTAL</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-warning" href="./editar_factor.php?id=<?php echo $fila['id'] ?> ">
-                                            <i class="fas fa-edit"></i> </a>
-                                        <a class="btn btn-danger" href="./eliminar_factor.php?id=<?php echo $fila['id'] ?>">
-                                            <i class="fas fa-trash"></i></a>
-
-                                        <!-- 
-                                    <a class="btn btn-success" href="./crear_factor.php?id=<?php echo $fila['id_factores'] ?>">
-                                        <i class="fas fa-plus"></i></a> -->
-                                    </td>
-                                </tr>
-                                <?php
-                        }
-                    } else {
-
+                $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+                $SQL = "SELECT * FROM dimensiones;";
+                $dato = mysqli_query($conexion, $SQL);
+                if ($dato->num_rows > 0) {
+                    while ($fila = mysqli_fetch_array($dato)) {
                         ?>
-                            <tr class="text-center">
-                                <td colspan="16">No existen registros</td>
-                            </tr>
-                            <?php
-
+                        <tr>
+                            <td>
+                                <?php echo $fila['dimension']; ?>
+                            </td>
+                            <td>
+                                <center><a class="btn btn-success" href="./ver_factores.php?id=<?php echo $fila['id'] ?> ">
+                                    <i class="fas fa-eye"></i></a></center>
+                            </td>
+                        </tr>
+                        <?php
                     }
-        }
-        ?>
-                </tbody>
-            </table>
+                } else {
+                    ?>
+                    <tr class="text-center">
+                        <td colspan="16">No existen registros</td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
         </div>
-
 
         <center>
             <div class="mb-3">

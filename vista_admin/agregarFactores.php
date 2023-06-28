@@ -6,6 +6,7 @@ error_reporting(0);
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
 $rol = $_SESSION['rol'];
+$dimen = $_GET['id'];
 
 if ($validar == null || $validar = '') {
   header("Location: ../includes/login.php");
@@ -29,25 +30,20 @@ if (isset($_POST['submit'])) {
   for ($x = 1; $x <= $cantidad; $x++) {
     if (isset($_POST["producto" . $x])) {
       $Pro = $_POST["producto" . $x];
-      $consulta = "INSERT INTO unidadejer (factores, id_factores, tipo, rol) VALUES ('$Pro', '$unidad', '1', '$rol')";
+      $consulta = "INSERT INTO notas_factores (nombre, tipo) VALUES ('$Pro', '$dimen')";
       mysqli_query($conexion, $consulta);
     }
   }
+  
 }
-?><br>
-<center>
-  <div>
-    <a class="boton" href="./agergarFactores2.php">Grado del Factor a ser Medido
-      <i class="fa fa-plus"></i> </a>
-  </div>
-</center>
-<br><br>
+?>
+<br>
 <div class="container">
   <table class="table table-bordered table-active table-striped">
     <thead class="thead-active">
       <tr>
         <th>
-          <center>Presencia o Ausencia</center>
+          <center>Factores</center>
         </th>
       </tr>
       <tr>
@@ -113,6 +109,7 @@ if (isset($_POST['submit'])) {
       </table>
       <center>
         <button type="submit" name="submit" class="boton">Guardar</button>
+        <a href="./ver_factores.php?id=<?php echo $_GET['id'] ?>" class="botonr">Volver</a>
       </center>
     </div>
   </form>

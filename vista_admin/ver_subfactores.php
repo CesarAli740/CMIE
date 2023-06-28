@@ -3,7 +3,7 @@
 session_start();
 error_reporting(0);
 
-$id_dimension = $_GET['id'];
+$id_factor = $_GET['id'];
 
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
@@ -31,6 +31,7 @@ if ($validar == null || $validar = '') {
 
 session_start();
 error_reporting(0);
+
 ?>
 <?php include '../header.php'; ?>
 
@@ -39,7 +40,7 @@ error_reporting(0);
     <br>
     <center>
             <div>
-                <a class="boton" href="./agregarFactores.php?id=<?php echo $_GET['id'] ?>">Nuevo Factor
+                <a class="boton" href="./agregarFactores.php?id=<?php echo $_GET['id'] ?>">Nuevo SubFactor
                     <i class="fa fa-plus"></i> </a>
             </div>
         </center><br>
@@ -72,10 +73,10 @@ error_reporting(0);
                 <thead class="thead-active">
                     <tr>
                         <th>
-                            <center>Factores</center>
+                            <center>SubFactores</center>
                         </th>
                         <th>
-                            <center>Subfactores</center>
+                            <center>Nota</center>
                         </th>
                         <th>
                             <center>Acciones</center>
@@ -86,7 +87,7 @@ error_reporting(0);
                 <?php
 
                 $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-                $SQL = "SELECT * FROM notas_factores WHERE notas_factores.tipo = '$id_dimension';";
+                $SQL = "SELECT * FROM subfactor WHERE subfactor.tipo = '$id_factor';";
                 $dato = mysqli_query($conexion, $SQL);
 
 
@@ -100,8 +101,7 @@ error_reporting(0);
                                 </td>
                                 <td>
                                     <center>
-                                        <a class="btn btn-success" href="./ver_subfactores.php?id=<?php echo $fila['id']?>&id_dimen=<?php echo $_GET['id']?>">
-                                            <i class="fas fa-eye"></i></a>
+                                       <p>Nota Final</p>
                                     </center>
                                 </td>
                                 <td>
@@ -133,7 +133,7 @@ error_reporting(0);
         </div>
         <center>
             <div class="mb-3">
-                <a href="./factor_admin.php" class="botonr">Volver</a>
+                <a href="./ver_factores.php?id=<?php echo $_GET['id_dimen']?>" class="botonr">Volver</a>
             </div>
         </center>
     </form>

@@ -22,14 +22,16 @@ if ($validar == null || $validar = '') {
     <title>Eliminar Dimension</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <style>
-    body {
-        background-image: url('../img/FondoMulti.svg');
+   body {
+        background-color:  #ECF8F9;
         margin-top: 1rem;
     }
-</style>
 
+    div.container {
+        color: black;
+    }
+</style>
 <body>
 
     <div class="container mt-5">
@@ -41,11 +43,12 @@ if ($validar == null || $validar = '') {
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <form action="../includes/_function_dimension.php" method="POST">
-                            <input type="hidden" name="accion" value="eliminar_registro">
+                        <form action="../includes/_functions.php" method="POST">
+                            <input type="hidden" name="accion" value="eliminar_factor">
                             <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+                            <input type="hidden" name="id_dimen" value="<?php echo $_GET['id_dimen']; ?>">
                             <input type="submit" name="" value="Eliminar" class=" btn btn-danger">
-                            <a href="./cuadro_de_mando.php" class="btn btn-success">Cancelar</a>
+                               <a href="./ver_factores.php?id=<?php echo $_GET['id_dimen']?>" class="btn btn-success">Cancelar</a>
                     </div>
                 </div>
             </div>

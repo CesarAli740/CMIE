@@ -4,9 +4,8 @@ session_start();
 error_reporting(0);
 
 $validar = $_SESSION['nombre'];
-$unidad = $_SESSION['id_unidad'];
+$unidad = $_GET['id'];
 $rol = $_SESSION['rol'];
-$nombre_unidad = $_SESSION['unidad'];
 
 if ($validar == null || $validar = '') {
     header("Location: ../includes/login.php");
@@ -29,60 +28,35 @@ if ($validar == null || $validar = '') {
 </head>
 
 <body>
-
-    <?php
-
-    $mediafinal_array = array(); // Arreglo para almacenar los valores de $mediafinal
-    $o = 2;
-    while ($o < 8) {
-        $conn = mysqli_connect("localhost", "root", "", "CMIE");
-        $sql3 = "SELECT notas_finales.personal, notas_finales.inteligencia, notas_finales.operaciones, notas_finales.logistica, notas_finales.accion_civica, notas_finales.derechos_humanos FROM notas_finales WHERE notas_finales.id_unidad = $unidad";
-        $result3 = $conn->query($sql3);
-        while ($row = $result3->fetch_assoc()) {
-            if ($o == 2) {
-                $personal = $row['personal'];
-                $valor1 = $personal;
-            } else if ($o == 3) {
-                $inteligencia = $row['inteligencia'];
-                $valor2 = $inteligencia;
-            } else if ($o == 4) {
-                $operaciones = $row['operaciones'];
-                $valor3 = $operaciones;
-            } else if ($o == 5) {
-                $logistica = $row['logistica'];
-                $valor4 = $logistica;
-            } else if ($o == 6) {
-                $accion_civica = $row['accion_civica'];
-                $valor5 = $accion_civica;
-            } else if ($o == 7) {
-                $derechos_humanos = $row['derechos_humanos'];
-                $valor6 = $derechos_humanos;
-            }
-        }
-
-        $mediatotalfinal = ($valor1 + $valor2 + $valor3 + $valor4 + $valor5 + $valor6)/6;
-        $mediatotalfinal = round($mediatotalfinal, 2);
-        
-        $o++;
-    }
-    ?>
-
     <br>
     <div class="container">
         <table class="table table-bordered table-active table-striped">
             <thead class="thead-active">
                 <tr>
+                    <td>
+                        <?php
+
+                        $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+                        $query = "SELECT * FROM unidad WHERE unidad.id = $unidad;";
+                        $resultado = mysqli_query($conexion, $query);
+                        while ($fila = mysqli_fetch_assoc($resultado)) {
+                            ?>
+                            <center>
+                                UNIDAD EVALUADA:
+                                <?php echo $fila['nombre']; ?>
+                            </center>
+                            <?php
+                        }
+
+                        ?>
+
+                    </td>
+                </tr>
+
+                <tr>
                     <th>
                         <center>NOTA FINAL</center>
                     </th>
-                </tr>
-                <tr>
-                    <td>
-                        <center>
-                            UNIDAD EVALUADA:
-                            <?php echo $_SESSION['unidad']; ?>
-                        </center>
-                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -92,9 +66,21 @@ if ($validar == null || $validar = '') {
                                     font-size: 80px;
                                 }
                             </style>
-                            <a class="nota_final">
-                                <?php echo $mediatotalfinal; ?>
-                            </a>
+                            <?php
+
+                            $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+                            $query = "SELECT * FROM unidad WHERE unidad.id = $unidad;";
+                            $resultado = mysqli_query($conexion, $query);
+                            while ($fila = mysqli_fetch_assoc($resultado)) {
+                                ?>
+                                <a class="nota_final">
+                                    <?php echo $fila['nota']; ?>
+                                </a>
+                                <?php
+                            }
+
+                            ?>
+
                         </center>
                     </td>
                 </tr>
@@ -122,32 +108,19 @@ if ($validar == null || $validar = '') {
                     </th>
                 </tr>
                 <?php
-                $c = 2;
-
-                while ($c < 8) {
-                    $dimen = '';
-                    if ($c == 2) {
-                        $dimen = 'PERSONAL';
-                    } else if ($c == 3) {
-                        $dimen = 'INTELIGENCIA';
-                    } else if ($c == 4) {
-                        $dimen = 'OPERACIONES';
-                    } else if ($c == 5) {
-                        $dimen = 'LOGISTICA';
-                    } else if ($c == 6) {
-                        $dimen = 'ACCIÓN CÍVICA';
-                    } else if ($c == 7) {
-                        $dimen = 'DERECHOS HUMANOS';
-                    }
+                $conc = 'c' . $unidad;
+                $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+                $query = "SELECT * FROM dimensiones";
+                $resultado = mysqli_query($conexion, $query);
+                while ($fila = mysqli_fetch_assoc($resultado)) {
                     ?>
                     <tr>
                         <td scope="col">
                             <center>
-                                <?php echo $dimen; ?>
+                                <?php echo $fila['dimension']; ?>
                             </center>
                         </td>
                         <td scope="col">
-
                             <style>
                                 p.notafinal {
                                     font-size: 20px;
@@ -155,39 +128,18 @@ if ($validar == null || $validar = '') {
                             </style>
                             <center>
                                 <p class="notafinal">
-
                                     <?php
-                                    $sql3 = "SELECT notas_finales.personal, notas_finales.inteligencia, notas_finales.operaciones, notas_finales.logistica, notas_finales.accion_civica, notas_finales.derechos_humanos FROM notas_finales WHERE notas_finales.id_unidad = $unidad";
-                                    $result3 = $conn->query($sql3);
-                                    while ($row = $result3->fetch_assoc()) {
-                                        if ($c == 2) {
-                                            echo $row['personal'];
-                                        } else if ($c == 3) {
-                                            echo $row['inteligencia'];
-                                        } else if ($c == 4) {
-                                            echo $row['operaciones'];
-                                        } else if ($c == 5) {
-                                            echo $row['logistica'];
-                                        } else if ($c == 6) {
-                                            echo $row['accion_civica'];
-                                        } else if ($c == 7) {
-                                            echo $row['derechos_humanos'];
-                                        }
-                                    }
+                                    echo $fila[$conc];
                                     ?>
-
                                 </p>
                             </center>
-
-
                         </td>
                         <td scope="col">
-                            <center><a class="boton" href="./ver_factores.php?id=<?php echo $c; ?>">
+                            <center><a class="boton" href="./ver_factores.php?id=<?php ?>">
                                     <i class="fas fa-eye"></i></a></center>
                         </td>
                     </tr>
                     <?php
-                    $c++;
                 }
                 ?>
             </thead>
@@ -197,6 +149,7 @@ if ($validar == null || $validar = '') {
     <form method="post" action="./reporte.php">
         <center>
             <div class="mb-3">
+                <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $_GET['id']; ?>">
                 <button type="submit" name="generar_pdf" class="boton">Generar PDF</button>
                 <a href="./principal.php" class="botonr">Volver</a>
             </div>
