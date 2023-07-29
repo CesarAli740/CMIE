@@ -78,16 +78,18 @@ $pdf->Cell(0, 10, 'RESUMEN GENERAL', 0, 1, 'C');
 $pdf->Ln(10);
 
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(110, 15, 'DIMENSIONES', 1, 0, 'C'); // Ancho ajustado a 110
-$pdf->Cell(80, 15, 'NOTA', 1, 1, 'C');
+$pdf->Cell(90, 15, 'DIMENSIONES', 1, 0, 'C'); // Ancho ajustado a 110
+$pdf->Cell(50, 15, 'PONDERACION', 1, 0, 'C'); // Ancho ajustado a 110
+$pdf->Cell(50, 15, 'NOTA', 1, 1, 'C');
 
 $conc = 'c' . $unidad;
 $conn = mysqli_connect("localhost", "root", "", "CMIE");
 $query = "SELECT * FROM dimensiones";
 $resultado = mysqli_query($conn, $query);
 while ($fila = mysqli_fetch_assoc($resultado)) {
-    $pdf->Cell(110, 10, $fila['dimension'], 1, 0, 'C'); // Ancho ajustado a 110
-    $pdf->Cell(80, 10, $fila[$conc], 1, 1, 'C');
+    $pdf->Cell(90, 10, '  '.$fila['dimension'], 1, 0, 'L'); // Ancho ajustado a 110
+    $pdf->Cell(50, 10, $fila['ponderacion'], 1, 0, 'C');
+    $pdf->Cell(50, 10, $fila[$conc], 1, 1, 'C');
 }
 
 // Generar el archivo PDF

@@ -140,10 +140,9 @@ $id = $_SESSION['id']; ?>
 
     <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
     <input type="hidden" name="accion" value="editar_registro2">
-    <button class="boton" name="evaluar" onClick="window.location.href='./evaluar.php';">Evaluar</button>
+    <button class="boton" name="evaluar" onClick="window.location.href='./evaluar.php';"><strong>Evaluar</strong></button>
     <button class="boton" name="coeficiente"
-      onClick="window.location.href='./coeficiente_de_efectividad.php';">Coeficiente de
-      Efectividad</button>
+      onClick="window.location.href='./coeficiente_de_efectividad.php';"><strong>Nota Final</strong></button>
 </form>
 
 

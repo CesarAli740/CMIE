@@ -53,8 +53,9 @@ error_reporting(0);
 
 
 <body>
+
     <br>
-    
+
     <div class="container">
         <table class="table table-bordered table-active table-striped">
             <thead class="thead-active">
@@ -138,12 +139,29 @@ error_reporting(0);
                                                     ?>
                                                     <select class="selector"
                                                         onchange="actualizarValor(this.value, '<?php echo $conc ?>', '<?php echo $a ?>', '<?php echo $fila['id'] ?>')">
-                                                        <option value="<?php echo ($fila[$conc] != '') ? $fila[$conc] : '' ?>"><?php echo ($fila[$conc] != '') ? $fila[$conc] : 'Seleccione una Opción'?></option>
-                                                        <option value="0">0</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="75">75</option>
-                                                        <option value="100">100</option>
+                                                        <option value="<?php echo ($fila[$conc] != '') ? $fila[$conc] : '' ?>">
+                                                            <?php
+                                                            if ($fila[$conc] == 0) {
+                                                                echo 'NULO';
+                                                            } else if ($fila[$conc] == 25) {
+                                                                echo 'MALO';
+                                                            } else if ($fila[$conc] == 50) {
+                                                                echo 'MEDIO';
+                                                            } else if ($fila[$conc] == 75) {
+                                                                echo 'BUENO';
+                                                            } else if ($fila[$conc] == 100) {
+                                                                echo 'EXCELENTE';
+                                                            } else {
+                                                                echo 'Seleccione una Opción';
+                                                            }
+                                                            ?>
+                                                        </option>
+
+                                                        <option value="0">NULO</option>
+                                                        <option value="25">MALO</option>
+                                                        <option value="50">MEDIO</option>
+                                                        <option value="75">BUENO</option>
+                                                        <option value="100">EXCELENTE</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -169,14 +187,65 @@ error_reporting(0);
         </div>
         <center>
             <div class="mb-3">
-                
-			<input type="submit" value="Guardar" class="boton" name="subir_nota_factor">
-            
-            <input type="hidden" name="id_factor" id="id_factor" value="<?php echo $_GET['id']; ?>">
-            <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $_GET['idu']; ?>">
-                <a href="./evaluar_factores.php?id=<?php echo $_GET['idu']?>" class="botonr">Volver</a>
+
+                <input type="submit" value="Guardar" class="boton" name="subir_nota_factor">
+
+                <input type="hidden" name="id_factor" id="id_factor" value="<?php echo $_GET['id']; ?>">
+                <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $_GET['idu']; ?>">
+                <a href="./evaluar_factores.php?id=<?php echo $_GET['idu'] ?>" class="botonr">Volver</a><br><br><br>
             </div>
         </center>
     </form>
+    <style>
+        .footer-text {
+            /* Estilos previos al footer, como se mostró anteriormente */
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #f8f8f8;
+            height: 60px;
+            /* Ajusta la altura del footer según tus necesidades */
+            display: flex;
+            justify-content: center;
+            background: #1B9C85;
+            color: #f9f9f9;
+            align-items: center;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer div {
+            padding-left: 2%;
+            padding-right: 2%;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <footer class="footer">
+        <div>
+            NULO = 0
+        </div>
+        <div>MALO = 25
+        </div>
+        <div>
+            MEDIO = 50
+        </div>
+        <div>
+            BUENO = 75
+        </div>
+        <div>
+            EXCELENTE = 100
+        </div>
+
+    </footer>
 </body>
 </form>

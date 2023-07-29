@@ -321,11 +321,16 @@ $nombre_division = $_SESSION['division'];
         <button type="button" onclick="window.location.href ='../views/user.php'" class="active">Usuarios</button>
         <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
         <?php
-      } else if ($rol == 2 or $rol == 3 or $rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
+      } else if ($rol == 2 or $rol == 3) {
         ?>
           <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
             class="active">Inicio</button>
           <button type="button" onclick="window.location.href ='../vista_evaluador/ranking.php'" class="active">Ranking</button>
+        <?php
+      }else if ($rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
+        ?>
+          <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
+            class="active">Inicio</button>
         <?php
       }
       ?>

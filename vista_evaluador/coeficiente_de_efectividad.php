@@ -101,6 +101,9 @@ if ($validar == null || $validar = '') {
                         <center>DIMENSIONES</center>
                     </th>
                     <th scope="col">
+                        <center>PONDERACIÓN</center>
+                    </th>
+                    <th scope="col">
                         <center>NOTA</center>
                     </th>
                     <th scope="col">
@@ -118,6 +121,11 @@ if ($validar == null || $validar = '') {
                         <td scope="col">
                             <center>
                                 <?php echo $fila['dimension']; ?>
+                            </center>
+                        </td>
+                        <td scope="col">
+                            <center>
+                                <?php echo $fila['ponderacion']; ?>
                             </center>
                         </td>
                         <td scope="col">
