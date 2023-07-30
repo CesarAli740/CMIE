@@ -78,6 +78,8 @@ if (isset($_POST['subir_nota_dimension'])) {
     header('Location: ../vista_admin/factor_admin.php');
   } else if ($rol == 2 or $rol == 3 or $rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
     header('Location: ../vista_evaluador/coeficiente_de_efectividad.php?id='.$id_unidad);
+  }else if ($rol == 10) {
+    header('Location: ../vista_evaluador/coeficiente_de_efectividad.php?id='.$id_unidad);
   }
 }
 

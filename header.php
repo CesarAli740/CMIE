@@ -4,12 +4,12 @@ error_reporting(0);
 $validar = $_SESSION['nombre'];
 
 if ($validar == null || $validar = '') {
-    header("Location: ../includes/login.php");
-    die();
+  header("Location: ../includes/login.php");
+  die();
 }
 ?>
 <?php
-$rol = $_SESSION['rol']; 
+$rol = $_SESSION['rol'];
 $nombre_division = $_SESSION['division'];
 ?>
 <!doctype html>
@@ -269,19 +269,22 @@ $nombre_division = $_SESSION['division'];
   $consulta = "SELECT rol FROM permisos WHERE id = $rol";
   $resultado = mysqli_query($conexion, $consulta);
   if ($fila = mysqli_fetch_assoc($resultado)) {
-      $nombre_rol = $fila['rol'];
+    $nombre_rol = $fila['rol'];
   }
   $consulta = "SELECT * FROM division WHERE id = $nombre_division";
   $resultado = mysqli_query($conexion, $consulta);
   if ($fila = mysqli_fetch_assoc($resultado)) {
-      $div_nombre = $fila['nombre'];
+    $div_nombre = $fila['nombre'];
   }
-  
+
   ?>
   <nav class="navbar2">
 
     <a class="navbar3">CMIE</a>
-    <a class="navbar3"><?php echo $nombre_rol;?> - <?php echo $div_nombre;?></a>
+    <a class="navbar3">
+      <?php echo $nombre_rol; ?> -
+      <?php echo $div_nombre; ?>
+    </a>
     <p class="navbar3" id="fecha"></p>
     <a href="../includes/_sesion/cerrarSesion.php"><i class="fa fa-power-off"
         style="color: #FFF; margin-right: 1rem;"></i> </a>
@@ -317,20 +320,30 @@ $nombre_division = $_SESSION['division'];
         ?>
         <button type="button" onclick="window.location.href ='../vista_admin/principal.php'"
           class="active">Inicio</button>
-        <button type="button" onclick="window.location.href ='../vista_admin/division_unidad.php'" class="active">Division/Unidad</button>
-        <button type="button" onclick="window.location.href ='../views/user.php'" class="active">Usuarios</button>
-        <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button>
+        <button type="button" onclick="window.location.href ='../vista_admin/division_unidad.php'"
+          class="active">Division/Unidad</button>
+        <button type="button" onclick="window.location.href ='../views/user.php'"
+          class="active">Usuarios</button><!-- 
+        <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button> -->
         <?php
       } else if ($rol == 2 or $rol == 3) {
         ?>
           <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
             class="active">Inicio</button>
-          <button type="button" onclick="window.location.href ='../vista_evaluador/ranking.php'" class="active">Ranking</button>
+          <button type="button" onclick="window.location.href ='../vista_evaluador/ranking.php'"
+            class="active">Ranking</button>
         <?php
-      }else if ($rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
+      } else if ($rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {
         ?>
-          <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
-            class="active">Inicio</button>
+            <button type="button" onclick="window.location.href ='../vista_evaluador/principal.php'"
+              class="active">Inicio</button>
+        <?php
+      } else if ($rol == 10) {
+        ?>
+              <button type="button" onclick="window.location.href ='../vista_jemge/principal.php'"
+                class="active">Inicio</button>
+              <button type="button" onclick="window.location.href ='../vista_jemge/ranking.php'"
+                class="active">Ranking</button>
         <?php
       }
       ?>
@@ -339,7 +352,6 @@ $nombre_division = $_SESSION['division'];
   <script type="text/javascript">const toggleMenuOpen = () => document.body.classList.toggle("open");</script>
 </body>
 <style>
-
   a {
     text-decoration: none;
   }

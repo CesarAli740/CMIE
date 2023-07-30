@@ -29,9 +29,12 @@ if (isset($_POST['accion'])) {
     case 'eliminar_unidad':
       eliminar_unidad();
       break;
-    case 'editar_registro2':
-      editar_registro2();
-      break;
+      case 'editar_registro2':
+        editar_registro2();
+        break;
+        case 'editar_registro3':
+          editar_registro3();
+          break;
 
     case 'eliminar_registro';
       eliminar_registro();
@@ -136,10 +139,24 @@ function editar_registro2()
   mysqli_query($conexion, $consulta);
 
   if (isset($_POST['coeficiente'])) {
-    header('Location: ../vista_evaluador/coeficiente_de_efectividad.php?id='.$unidad);
+    header('Location: ../vista_evaluador/coeficiente_de_efectividad.php?id=' . $unidad);
   }
   if (isset($_POST['evaluar'])) {
-    header('Location: ../vista_evaluador/evaluar_factores.php?id='.$unidad);
+    header('Location: ../vista_evaluador/evaluar_factores.php?id=' . $unidad);
+  }
+
+}function editar_registro3()
+{
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  extract($_POST);
+  $consulta = "UPDATE user SET unidad = '$unidad' WHERE id = '$id' ";
+  mysqli_query($conexion, $consulta);
+
+  if (isset($_POST['coeficiente'])) {
+    header('Location: ../vista_jemge/coeficiente_de_efectividad.php?id=' . $unidad);
+  }
+  if (isset($_POST['evaluar'])) {
+    header('Location: ../vista_jemge/evaluar_factores.php?id=' . $unidad);
   }
 
 }
@@ -513,6 +530,10 @@ function acceso_user()
   } else if ($filas['rol'] == 2 or $filas['rol'] == 3 or $filas['rol'] == 4 or $filas['rol'] == 5 or $filas['rol'] == 6 or $filas['rol'] == 7 or $filas['rol'] == 8 or $filas['rol'] == 9) { //evaluadores
 
     header("Location: ../vista_evaluador/principal.php");
+
+  } else if ($filas['rol'] == 10) { //JEMGE
+
+    header("Location: ../vista_jemge/principal.php");
 
   } else {
 
