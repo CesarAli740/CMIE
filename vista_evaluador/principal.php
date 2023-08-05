@@ -134,7 +134,7 @@ $id = $_SESSION['id']; ?>
     </center>
   </div>
   <div class="titulo">
-    <h1 class="display-4">Normas y Procedimientos para la Ejecución del Control a la Gestión Estratégica</h1>
+    <h1 class="display-4">Sistema Estratégico para Determinar la Eficiencia Combativa</h1>
   </div>
   <div class="botones">
 

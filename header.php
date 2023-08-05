@@ -322,6 +322,8 @@ $nombre_division = $_SESSION['division'];
           class="active">Inicio</button>
         <button type="button" onclick="window.location.href ='../vista_admin/division_unidad.php'"
           class="active">Division/Unidad</button>
+        <button type="button" onclick="window.location.href ='../vista_admin/ponderacion.php'"
+          class="active">Ponderaciones</button>
         <button type="button" onclick="window.location.href ='../views/user.php'"
           class="active">Usuarios</button><!-- 
         <button type="button" onclick="window.location.href ='../views/ranking.php'" class="active">Ranking</button> -->

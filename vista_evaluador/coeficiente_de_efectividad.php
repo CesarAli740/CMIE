@@ -125,7 +125,7 @@ if ($validar == null || $validar = '') {
                         </td>
                         <td scope="col">
                             <center>
-                                <?php echo $fila['ponderacion']; ?>
+                                <?php echo $fila['ponderacion']*100 .' %'; ?>
                             </center>
                         </td>
                         <td scope="col">

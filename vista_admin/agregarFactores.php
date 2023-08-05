@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
   for ($x = 1; $x <= $cantidad; $x++) {
     if (isset($_POST["producto" . $x])) {
       $Pro = $_POST["producto" . $x];
-      $consulta = "INSERT INTO notas_factores (nombre, tipo) VALUES ('$Pro', '$dimen')";
+      $consulta = "INSERT INTO subfactor (nombre, tipo) VALUES ('$Pro', '$dimen')";
       mysqli_query($conexion, $consulta);
     }
   }

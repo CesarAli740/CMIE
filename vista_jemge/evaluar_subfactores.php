@@ -141,7 +141,7 @@ error_reporting(0);
                                                         onchange="actualizarValor(this.value, '<?php echo $conc ?>', '<?php echo $a ?>', '<?php echo $fila['id'] ?>')" disabled>
                                                         <option value="<?php echo ($fila[$conc] != '') ? $fila[$conc] : '' ?>">
                                                             <?php
-                                                            if ($fila[$conc] == 0) {
+                                                            /* if ($fila[$conc] == 0) {
                                                                 echo 'NULO';
                                                             } else if ($fila[$conc] == 25) {
                                                                 echo 'MALO';
@@ -151,6 +151,20 @@ error_reporting(0);
                                                                 echo 'BUENO';
                                                             } else if ($fila[$conc] == 100) {
                                                                 echo 'EXCELENTE';
+                                                            } else {
+                                                                echo 'Aún no Evaluado';
+                                                            }  */
+                                                            
+                                                            if ($fila[$conc] == 0) {
+                                                                echo '0';
+                                                            } else if ($fila[$conc] == 25) {
+                                                                echo '25';
+                                                            } else if ($fila[$conc] == 50) {
+                                                                echo '50';
+                                                            } else if ($fila[$conc] == 75) {
+                                                                echo '75';
+                                                            } else if ($fila[$conc] == 100) {
+                                                                echo '100';
                                                             } else {
                                                                 echo 'Aún no Evaluado';
                                                             }
