@@ -64,7 +64,7 @@ if ($validar == null || $validar = '') {
 
         <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $unidad; ?>">
         <br>
-        
+
         <div class="container">
             <table class="table table-bordered table-active table-striped">
                 <thead class="thead-active">
@@ -90,42 +90,49 @@ if ($validar == null || $validar = '') {
 
         <div class="container is-fluid">
 
-        <table class="table table-responsive-sm table-striped table-active ">
-            <thead>
-                <tr>
-                    <th><center>Dimensiones</center></th>
-                    <th><center>Factores</center></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-                $SQL = "SELECT * FROM dimensiones;";
-                $dato = mysqli_query($conexion, $SQL);
-                if ($dato->num_rows > 0) {
-                    while ($fila = mysqli_fetch_array($dato)) {
+            <table class="table table-responsive-sm table-striped table-active ">
+                <thead>
+                    <tr>
+                        <th>
+                            <center>Dimensiones</center>
+                        </th>
+                        <th>
+                            <center>Factores</center>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    
+                    $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+                    $SQL = "SELECT * FROM dimensiones;";
+                    $dato = mysqli_query($conexion, $SQL);
+                   
+                    if ($dato->num_rows > 0) {
+                        while ($fila = mysqli_fetch_array($dato)) {
+                            ?>
+                            <tr>
+                                <td>
+                                    <?php echo $fila['dimension']; ?>
+                                </td>
+                                <td>
+                                    <center><a class="btn btn-success" href="./ver_factores.php?id=<?php echo $fila['id'] ?> ">
+                                            <i class="fas fa-eye"></i></a></center>
+                                </td>
+
+                            </tr>
+                            <?php
+                        }
+                    } else {
                         ?>
-                        <tr>
-                            <td>
-                                <?php echo $fila['dimension']; ?>
-                            </td>
-                            <td>
-                                <center><a class="btn btn-success" href="./ver_factores.php?id=<?php echo $fila['id'] ?> ">
-                                    <i class="fas fa-eye"></i></a></center>
-                            </td>
-                        </tr>
-                        <?php
-                    }
-                } else {
-                    ?>
                     <tr class="text-center">
                         <td colspan="16">No existen registros</td>
                     </tr>
                     <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                    }
+                    ?>
+                </tbody>
+            </table>
         </div>
 
         <center>
