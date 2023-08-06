@@ -27,7 +27,8 @@ if ($validar == null || $validar = '') {
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
     integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
     crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../css/es.css">
   <title>Usuarios</title>
 </head>
@@ -56,7 +57,7 @@ if ($validar == null || $validar = '') {
       </div>
       <br><br>
       </form>
-      <table class=" table table-responsive-sm table-striped table-active " id="table_id">
+      <table class=" table table-responsive-sm table-striped table-active" id="table_id">
         <thead>
           <tr>
             <th>Nombre</th>
@@ -70,6 +71,7 @@ if ($validar == null || $validar = '') {
             <th>Division</th>
             <th>Unidad</th>
             <th>Acciones</th>
+            <th>Estado</th>
           </tr>
         </thead>
         <tbody>
@@ -78,7 +80,7 @@ if ($validar == null || $validar = '') {
 
           $conexion = mysqli_connect("localhost", "root", "", "CMIE");
           $SQL = "SELECT user.id, user.nombre, user.apPAt, user.apMAt, user.correo, user.grado, user.password, user.telefono,
-user.fecha, permisos.rol, user.division, user.unidad FROM user
+user.fecha, permisos.rol, user.division, user.unidad, user.estado FROM user
 LEFT JOIN permisos ON user.rol = permisos.id";
           $dato = mysqli_query($conexion, $SQL);
 
@@ -118,36 +120,69 @@ LEFT JOIN permisos ON user.rol = permisos.id";
 
 
 
-                <td>
-
-
-                  <a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?> ">
-                    <i class="fas fa-edit"></i> </a>
-
-                  <a class="btn btn-danger" href="eliminar_user.php?id=<?php echo $fila['id'] ?>">
-                    <i class="fas fa-trash"></i></a>
-
-                </td>
+                <?php if ($fila['estado'] == 3) { ?>
+                  <td>
+                    <a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?> ">
+                      <i class="fa fa-edit"></i> </a>
+                  </td>
+                  <td><a class="btn btn-light"><i class="fa fa-check"></i></a></td>
+                  <?php
+                } else if ($fila['estado'] != 3) { ?>
+                    <td>
+                      <a class="btn btn-warning" href="editar_user.php?id=<?php echo $fila['id'] ?>">
+                        <i class="fa fa-edit"></i> </a>
+                      <a class="btn btn-danger" href="eliminar_user.php?id=<?php echo $fila['id'] ?>">
+                        <i class="fa fa-trash"></i></a>
+                    </td>
+                    <td>
+                      <script>
+                        function ejecutarConsulta(id, x, button) {
+                          var est = '';
+                          if (x == 1) {
+                            est = 0;
+                          } else if (x == 0) {
+                            est = 1;
+                          }
+                          $.ajax({
+                            url: '../includes/estado.php',
+                            method: 'POST',
+                            data: {
+                              id: id,
+                              estado: est
+                            },
+                            success: function (response) {
+                              console.log(response);
+                              window.location.reload();
+                            },
+                            error: function (xhr, status, error) {
+                              console.error(error);
+                              alert('There was an error processing your request. Please try again later.');
+                            }
+                          });
+                        }
+                      </script>
+                      <?php
+                      if ($fila['estado'] == 1) {
+                        $class = 'btn btn-light';
+                      } else if ($fila['estado'] == 0) {
+                        $class = 'btn btn-light';
+                      } ?>
+                      <a class="<?php echo $class; ?>"
+                        onclick="ejecutarConsulta(<?php echo $fila['id']; ?>, <?php echo $fila['estado']; ?>,this)">
+                        <i class="fa fa-<?php echo ($fila['estado'] == 1) ? 'check' : 'ban'; ?>"></i>
+                      </a>
+                    </td>
+                  <?php } ?>
               </tr>
-
-
               <?php
             }
-          } else {
-
-            ?>
-            <tr class="text-center">
-              <td colspan="16">No existen registros</td>
-            </tr>
-
-
-            <?php
-
+          } else { ?>
+          <tr class="text-center">
+            <td colspan="16">No existen registros</td>
+          </tr>
+          <?php
           }
-
           ?>
-
-
 </body>
 </table>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"

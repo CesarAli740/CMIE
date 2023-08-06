@@ -231,7 +231,7 @@ error_reporting(0);
             /* Ajusta la altura del footer según tus necesidades */
             display: flex;
             justify-content: center;
-            background: #1B9C85;
+            background: #4F494A;
             color: #f9f9f9;
             align-items: center;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);

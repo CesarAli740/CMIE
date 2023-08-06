@@ -229,29 +229,19 @@ if ($validar == null || $validar = '') {
                                                                 font-size: 16px;
                                                                 /* Tamaño de fuente */
                                                                 border: 1px solid #ccc;
-                                                                /* Borde */
                                                                 border-radius: 4px;
-                                                                /* Esquinas redondeadas */
                                                                 background-color: transparent;
-                                                                /* Color de fondo */
                                                                 color: #333;
-                                                                /* Color del texto */
                                                                 width: 200px;
-                                                                /* Ancho del select */
                                                             }
 
-                                                            /* Estilo al pasar el cursor sobre el select */
                                                             select.selector:hover {
                                                                 border-color: #999;
-                                                                /* Color del borde al pasar el cursor */
                                                             }
 
-                                                            /* Estilo al enfocar el select */
                                                             select.selector:focus {
                                                                 outline: none;
-                                                                /* Quitar el contorno de enfoque predeterminado */
                                                                 box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
-                                                                /* Sombra alrededor del select */
                                                             }
                                                         </style>
                                                         <select class="selector"

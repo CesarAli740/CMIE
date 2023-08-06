@@ -25,7 +25,7 @@ $nombre_division = $_SESSION['division'];
   }
 
   body {
-    background: #ECF8F9;
+    background: #DADDDF;
   }
 
   button {
@@ -39,7 +39,7 @@ $nombre_division = $_SESSION['division'];
 
   .boton {
     text-decoration: none;
-    background-color: #1B9C85;
+    background-color: #3F4044;
     border: none;
     color: white;
     padding: 0.375rem 0.75rem;
@@ -69,7 +69,7 @@ $nombre_division = $_SESSION['division'];
 
   a.boton {
     text-decoration: none;
-    background-color: #1B9C85;
+    background-color: #3F4044;
     border: none;
     color: white;
     padding: 0.575rem 2rem;
@@ -92,7 +92,7 @@ $nombre_division = $_SESSION['division'];
     justify-content: center;
     width: 100%;
     height: 64px;
-    background: #1B9C85;
+    background: #3F4044;
     color: #f9f9f9;
     font-family: "Poppins";
     box-sizing: border-box;
@@ -111,7 +111,7 @@ $nombre_division = $_SESSION['division'];
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    background: #025464;
+    background: #4F494A;
     color: #f9f9f9;
     font-family: "Poppins";
   }
@@ -221,7 +221,7 @@ $nombre_division = $_SESSION['division'];
   }
 
   .dropdown-toggle {
-    background-color: #1B9C85;
+    background-color: #3F4044;
     color: white;
     border: none;
     padding: 0.375rem 0.75rem;

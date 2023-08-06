@@ -25,7 +25,7 @@ if ($validar == null || $validar = '') {
 <body>
   <style>
     .titulo_ranking {
-      padding: 3rem;
+      padding: 1rem;
       text-align: center;
     }
 
@@ -39,8 +39,26 @@ if ($validar == null || $validar = '') {
         font-size: 18px;
       }
     }
-  </style>
 
+    .ranking {
+      display: flex;
+      justify-content: center;
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .ranking th,
+    .ranking td {
+      padding: 30px;
+      border-bottom: 1px solid #555;
+    }
+
+    .ranking th {
+      background-color: transparent;
+    }
+  </style>
   <div class="titulo_ranking">
     <?php
 
@@ -54,8 +72,40 @@ if ($validar == null || $validar = '') {
       <?php echo $div_nombre; ?>
     </h1>
   </div>
+  <div class="ranking">
+    <table>
+      <tr>
+        <th>Posición</th>
+        <th>Nombre</th>
+        <th>Puntuación</th>
+      </tr>
+      <?php
+      $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+      $sql = "SELECT * FROM unidad WHERE unidad.division = '$id_division' ORDER BY nota DESC";
+      $result = mysqli_query($conexion, $sql);
 
-  <div style="position: relative; margin: 0 auto; max-width: 50rem;">
+      if ($result) {
+        $posicion = 1;
+        while ($row = mysqli_fetch_assoc($result)) {
+          echo "<tr>";
+          echo "<td>{$posicion}</td>";
+          echo "<td>{$row['nombre']}</td>";
+          echo "<td>{$row['nota']} %</td>";
+          echo "</tr>";
+
+          // Agregar los nombres y puntuaciones a los arrays para el gráfico
+          $nombres[] = $row['nombre'];
+          $puntuaciones[] = $row['nota'];
+
+          $posicion++;
+        }
+      }
+      ?>
+    </table>
+  </div>
+
+
+  <div style="position: center; margin: 0 auto; max-width: 50rem;">
     <canvas id="myChart"></canvas>
   </div>
 
@@ -84,7 +134,8 @@ if ($validar == null || $validar = '') {
 
 
       // Generar un color aleatorio con transparencia
-      $color = 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ')';
+      $color = 'rgba(' . rand(0, 100) . ',' . rand(100, 150) . ',' . rand(0, 100) . ')';
+
       $colors[] = $color;
     }
     // Cerrar la conexión
@@ -132,3 +183,78 @@ if ($validar == null || $validar = '') {
 </body>
 
 </html>
+<!-- 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ranking CTF con Gráfico</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* ... Tus estilos existentes ... */
+        .chart-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .ranking {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .ranking h2 {
+            margin-bottom: 20px;
+        }
+
+        .ranking table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .ranking th, .ranking td {
+            padding: 10px;
+            border-bottom: 1px solid #555;
+        }
+
+        .ranking th {
+            background-color: azure;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="chart-container">
+        <canvas id="graficoPuntuaciones"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('graficoPuntuaciones').getContext('2d');
+        var data = {
+            labels: <?php echo json_encode($nombres); ?>, // Usar nombres de participantes desde PHP
+            datasets: [{
+                label: 'Puntuación',
+                data: <?php echo json_encode($puntuaciones); ?>, // Usar puntuaciones desde PHP
+                backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+        var options = {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        };
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    </script>
+</body>
+
+</html> -->

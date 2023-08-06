@@ -523,25 +523,30 @@ function acceso_user()
   $_SESSION['unidad'] = $filas['unidad'];
   $_SESSION['division'] = $filas['division'];
 
-  if ($filas['rol'] == 1) { //admin
+ 
+  if ($filas['estado'] <> 0) {
+    if ($filas['rol'] == 1) { //admin
 
-    header("Location: ../vista_admin/principal.php");
-
-  } else if ($filas['rol'] == 2 or $filas['rol'] == 3 or $filas['rol'] == 4 or $filas['rol'] == 5 or $filas['rol'] == 6 or $filas['rol'] == 7 or $filas['rol'] == 8 or $filas['rol'] == 9) { //evaluadores
-
-    header("Location: ../vista_evaluador/principal.php");
-
-  } else if ($filas['rol'] == 10) { //JEMGE
-
-    header("Location: ../vista_jemge/principal.php");
-
-  } else {
-
-    header('Location: login.php');
+      header("Location: ../vista_admin/principal.php");
+  
+    } else if ($filas['rol'] == 2 or $filas['rol'] == 3 or $filas['rol'] == 4 or $filas['rol'] == 5 or $filas['rol'] == 6 or $filas['rol'] == 7 or $filas['rol'] == 8 or $filas['rol'] == 9) { //evaluadores
+  
+      header("Location: ../vista_evaluador/principal.php");
+  
+    } else if ($filas['rol'] == 10) { //JEMGE
+  
+      header("Location: ../vista_jemge/principal.php");
+  
+    } else {
+  
+      header('Location: login.php');
+      session_destroy();
+  
+    }
+} else {
+    header('Location: ./bloqueado.php');
     session_destroy();
-
-  }
-
+}
 
 }
 

@@ -17,9 +17,13 @@ if (isset($_POST['registrar'])) {
     $rol = trim($_POST['rol']);
     $division = trim($_POST['division']);
     $unidad = trim($_POST['unidad']);
+    $est = 1;
+    if ($rol == 1) {
+      $est = 3;
+    }
 
-    $consulta = "INSERT INTO user (nombre, apPAt, apMAt, correo, grado, telefono, password, rol, division, unidad)
-    VALUES ('$nombre', '$apPAt', '$apMAt', '$correo', '$grado','$telefono','$password', '$rol', '$division', '$unidad')";
+    $consulta = "INSERT INTO user (nombre, apPAt, apMAt, correo, grado, telefono, password, rol, division, unidad, estado)
+    VALUES ('$nombre', '$apPAt', '$apMAt', '$correo', '$grado','$telefono','$password', '$rol', '$division', '$unidad', '$est')";
 
     mysqli_query($conexion, $consulta);
     mysqli_close($conexion);

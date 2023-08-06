@@ -40,7 +40,7 @@ error_reporting(0);
     <br>
     <center>
             <div>
-                <a class="boton" href="./agregarFactores.php?id=<?php echo $_GET['id'] ?>">Nuevo SubFactor
+                <a class="boton" href="./agregarFactores.php?id=<?php echo $_GET['id'] ?>&id_dimen=<?php echo $_GET['id_dimen'] ?>">Nuevo SubFactor
                     <i class="fa fa-plus"></i> </a>
             </div>
         </center><br>

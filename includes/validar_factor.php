@@ -74,6 +74,11 @@ if (isset($_POST['subir_nota_dimension'])) {
 
   mysqli_query($conexion, $consulta);
 
+  
+  $query = "UPDATE user SET estado = 0 WHERE user.id = $id";
+  mysqli_query($conexion, $query);
+
+
   if ($rol == 1) {
     header('Location: ../vista_admin/factor_admin.php');
   } else if ($rol == 2 or $rol == 3 or $rol == 4 or $rol == 5 or $rol == 6 or $rol == 7 or $rol == 8 or $rol == 9) {

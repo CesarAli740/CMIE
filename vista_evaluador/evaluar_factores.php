@@ -5,6 +5,7 @@ error_reporting(0);
 
 $id_dimension = $_SESSION['rol'] - 1;
 
+$id = $_SESSION['id'];
 $validar = $_SESSION['nombre'];
 $unidad = $_SESSION['id_unidad'];
 $rol = $_SESSION['rol'];
@@ -113,10 +114,23 @@ error_reporting(0);
                 </tbody>
             </table>
         </div>
+<script>
+    function mostrarAdvertencia() {
+      var confirmacion = confirm("¿Estás seguro de que deseas guardar la nota en la dimensión?, Esta acción no se puede repetir y sera imposible cambiar la nota despues de Aceptar");
+      
+      if (confirmacion) {
+        document.getElementById("formulario").submit(); 
+      } else {
+        event.preventDefault();
+      }
+    }
+  </script>
+  
         <center>
             <div class="mb-3">
-                <input type="submit" value="Guardar" class="boton" name="subir_nota_dimension">
+                <input type="submit" value="Guardar" class="boton" name="subir_nota_dimension" onclick="mostrarAdvertencia()">
                 <input type="hidden" name="id_dimension" id="id_dimension" value="<?php echo $id_dimension; ?>">
+                <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
                 <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $_GET['id']; ?>">
                 <a href="./principal.php" class="botonr">Volver</a>
             </div>

@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
       </table>
       <center>
         <button type="submit" name="submit" class="boton">Guardar</button>
-        <a href="./ver_factores.php?id=<?php echo $_GET['id'] ?>" class="botonr">Volver</a>
+        <a href="./ver_subfactores.php?id=<?php echo $_GET['id'] ?>&id_dimen=<?php echo $_GET['id_dimen'] ?>" class="botonr">Volver</a>
       </center>
     </div>
   </form>

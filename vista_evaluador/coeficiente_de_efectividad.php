@@ -27,6 +27,22 @@ if ($validar == null || $validar = '') {
         crossorigin="anonymous"></script>
 </head>
 
+<script>
+    
+    var tiempoEspera = 5000; // 3 segundos de espera antes de redirigir (puedes ajustar este valor)
+    function cerrarSesion() {
+      setTimeout(function() {
+      alert("Tu sesión se cerrará automáticamente en unos segundos");
+        window.location.href = "../includes/_sesion/cerrarSesion.php"; // Redirigir a la página de cierre de sesión
+      }, tiempoEspera);
+    }
+
+    
+    window.onload = function() {
+        cerrarSesion();
+    };
+    </script>
+
 <body>
     <br>
     <div class="container">

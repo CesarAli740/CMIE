@@ -29,7 +29,7 @@ $id_unidad = $_SESSION['id_unidad'];
 :root{font-family: 'Roboto', sans-serif;}
 /* Estilos para los botones */
 .boton {
-  background-color: #1B9C85;
+  background-color: #4F494A;
   border: none;
   color: white;
   padding: 15px 32px;
