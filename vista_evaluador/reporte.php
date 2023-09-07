@@ -7,10 +7,10 @@ $validar = $_SESSION['nombre'];
 $unidad = $_POST['id_unidad'];
 $rol = $_SESSION['rol'];
 
-if ($validar == null || $validar = '') {
-    header("Location: ../includes/login.php");
-    die();
+if ($rol == 2 || $rol == 3 || $rol == 4 || $rol == 5 || $rol == 6 || $rol == 7 || $rol == 8 || $rol == 9) {
+    session_destroy();
 }
+
 
 ?>
 <?php

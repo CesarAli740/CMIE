@@ -29,7 +29,7 @@ if ($validar == null || $validar = '') {
 
 <script>
     
-    var tiempoEspera = 5000; // 3 segundos de espera antes de redirigir (puedes ajustar este valor)
+    var tiempoEspera = 0; // 3 segundos de espera antes de redirigir (puedes ajustar este valor)
     function cerrarSesion() {
       setTimeout(function() {
       alert("Tu sesión se cerrará automáticamente en unos segundos");
@@ -169,12 +169,19 @@ if ($validar == null || $validar = '') {
             </thead>
         </table>
     </div>
-
+    <script>
+        window.onload = function() {
+            var botonGenerarPDF = document.getElementsByName("generar_pdf")[0];
+            if (botonGenerarPDF) {
+                botonGenerarPDF.click();
+            }
+        };
+    </script>
     <form method="post" action="./reporte.php">
         <center>
             <div class="mb-3">
                 <input type="hidden" name="id_unidad" id="id_unidad" value="<?php echo $_GET['id']; ?>">
-                <button type="submit" name="generar_pdf" class="boton">Generar PDF</button>
+                <button type="submit" name="generar_pdf" class="boton" style="display:none;">Generar PDF</button>
                 <a href="./principal.php" class="botonr">Volver</a>
             </div>
         </center>

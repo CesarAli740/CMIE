@@ -83,6 +83,10 @@ $id = $_SESSION['id']; ?>
 <form action="../includes/_functions.php" method="POST">
 
   <div class="container">
+
+  <div class="titulo">
+    <h1 class="display-4">Sistema Estratégico para Determinar la Eficiencia Combativa</h1>
+  </div>
     <center> <input type="hidden" id="gunidad" name="gunidad" value="<?php echo $nombre_gunidad; ?>">
       <br>
 
@@ -132,9 +136,6 @@ $id = $_SESSION['id']; ?>
         ?>
       </select>
     </center>
-  </div>
-  <div class="titulo">
-    <h1 class="display-4">Sistema Estratégico para Determinar la Eficiencia Combativa</h1>
   </div>
   <div class="botones">
 

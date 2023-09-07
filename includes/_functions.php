@@ -16,12 +16,19 @@ if (isset($_POST['accion'])) {
       eliminar_division();
       break;
 
-    case 'editar_factor':
-      editar_factor();
-      break;
-    case 'eliminar_factor':
-      eliminar_factor();
-      break;
+      case 'editar_subfactor':
+        editar_subfactor();
+        break;
+      case 'eliminar_subfactor':
+        eliminar_subfactor();
+        break;
+
+        case 'editar_factor':
+          editar_factor();
+          break;
+        case 'eliminar_factor':
+          eliminar_factor();
+          break;
 
     case 'editar_unidad':
       editar_unidad();
@@ -72,6 +79,29 @@ function eliminar_factor()
   mysqli_query($conexion, $consulta);
 
   header('Location: ../vista_admin/ver_factores.php?id=' . $id_dimen);
+
+}
+function editar_subfactor()
+{
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  extract($_POST);
+  $consulta = "UPDATE subfactor SET nombre = '$nombre' WHERE id = '$id'";
+
+  mysqli_query($conexion, $consulta);
+  header('Location: ../vista_admin/ver_subfactores.php?id=' . $id_dimen.'&id_dimen=' . $id);
+
+}
+
+function eliminar_subfactor()
+{
+  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+  extract($_POST);
+  $id = $_POST['id'];
+  $consulta = "DELETE FROM subfactor WHERE id = $id";
+
+  mysqli_query($conexion, $consulta);
+
+  header('Location: ../vista_admin/ver_subfactores.php?id=' . $id_dimen.'&id_dimen=' . $id);
 
 }
 

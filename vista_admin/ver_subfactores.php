@@ -40,7 +40,7 @@ error_reporting(0);
     <br>
     <center>
             <div>
-                <a class="boton" href="./agregarFactores.php?id=<?php echo $_GET['id'] ?>&id_dimen=<?php echo $_GET['id_dimen'] ?>">Nuevo SubFactor
+                <a class="boton" href="./agregarSubfactores.php?id=<?php echo $_GET['id'] ?>&id_dimen=<?php echo $_GET['id_dimen'] ?>">Nuevo SubFactor
                     <i class="fa fa-plus"></i> </a>
             </div>
         </center><br>
@@ -107,10 +107,10 @@ error_reporting(0);
                                 <td>
                                     <center>
                                         <a class="btn btn-warning"
-                                            href="editar_factor.php?id=<?php echo $fila['id']; ?>&id_dimen=<?php echo $_GET['id'] ?>">
+                                            href="editar_subfactor.php?id=<?php echo $fila['id']; ?>&id_dimen=<?php echo $_GET['id'] ?>">
                                             <i class="fas fa-edit"></i> </a>
                                         <a class="btn btn-danger"
-                                            href="eliminar_factor.php?id=<?php echo $fila['id']; ?>&id_dimen=<?php echo $_GET['id'] ?>">
+                                            href="eliminar_subfactor.php?id=<?php echo $fila['id']; ?>&id_dimen=<?php echo $_GET['id'] ?>">
                                             <i class="fas fa-trash"></i></a>
                                     </center>
                                 </td>

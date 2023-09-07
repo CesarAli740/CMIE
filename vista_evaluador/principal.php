@@ -83,6 +83,10 @@ $id = $_SESSION['id']; ?>
 <form action="../includes/_functions.php" method="POST">
 
   <div class="container">
+
+  <div class="titulo">
+    <h1 class="display-4">Sistema Estratégico para Determinar la Eficiencia Combativa</h1>
+  </div>
     <center> <input type="hidden" id="gunidad" name="gunidad" value="<?php echo $nombre_gunidad; ?>">
       <br>
 
@@ -133,9 +137,6 @@ $id = $_SESSION['id']; ?>
       </select>
     </center>
   </div>
-  <div class="titulo">
-    <h1 class="display-4">Sistema Estratégico para Determinar la Eficiencia Combativa</h1>
-  </div>
   <div class="botones">
 
     <input type="hidden" id="id" name="id" value="<?php echo $id; ?>">
@@ -144,8 +145,8 @@ $id = $_SESSION['id']; ?>
 
     <button class="boton" name="evaluar"
       onClick="window.location.href='./evaluar.php';"><strong>Evaluar</strong></button>
-    <button class="boton" name="coeficiente" onClick="window.location.href='./coeficiente_de_efectividad.php';"
-      disabled><strong>Nota Final</strong></button>
+    <!-- <button class="boton" name="coeficiente" onClick="window.location.href='./coeficiente_de_efectividad.php';"
+      disabled><strong>Nota Final</strong></button> -->
 </form>
 
 

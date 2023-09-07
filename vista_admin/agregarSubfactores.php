@@ -30,11 +30,11 @@ if (isset($_POST['submit'])) {
   for ($x = 1; $x <= $cantidad; $x++) {
     if (isset($_POST["producto" . $x])) {
       $Pro = $_POST["producto" . $x];
-      $consulta = "INSERT INTO notas_factores (nombre, tipo) VALUES ('$Pro', '$dimen')";
+      $consulta = "INSERT INTO subfactor (nombre, tipo) VALUES ('$Pro', '$dimen')";
       mysqli_query($conexion, $consulta);
     }
   }
-
+  header('Location: ../vista_admin/ver_subfactores.php?id=' . $id.'&id_dimen=' . $id_dimen);
 }
 ?>
 <br>
@@ -109,7 +109,7 @@ if (isset($_POST['submit'])) {
       </table>
       <center>
         <button type="submit" name="submit" class="boton">Guardar</button>
-        <a href="javascript:history.go(-1);" class="btn btn-danger">Cancelar</a>
+        <a href="javascript:history.go(-1);" class="btn btn-danger">Volver</a>
       </center>
     </div>
   </form>

@@ -63,7 +63,7 @@ if ($validar == null || $validar = '') {
             <th scope="col">Mision del Ejercito</th>
             <th scope="col">Mision Division</th> <!-- FFAA -->
             <th scope="col">Mision Unidad</th>
-            <th scope="col">Actualizar/Eliminar</th>
+            <th scope="col">Actualizar</th>
           </tr>
         </thead>
         <tbody>
@@ -89,10 +89,10 @@ if ($validar == null || $validar = '') {
                   <?php echo $fila['misioneunid']; ?>
                 </td>
                 <td>
-                  <a class="btn btn-warning" href="./editar_mision.php?id=<?php echo $fila['id'] ?> ">
-                    <i class="fas fa-edit"></i> </a>
+                  <center><a class="btn btn-warning" href="./editar_mision.php?id=<?php echo $fila['id'] ?> ">
+                    <i class="fas fa-edit"></i> </a></center><!-- 
                   <a class="btn btn-danger" href="./eliminar_mision.php?id=<?php echo $fila['id'] ?>">
-                    <i class="fas fa-trash"></i></a>
+                    <i class="fas fa-trash"></i></a> -->
 
                 </td>
               </tr>
