@@ -180,19 +180,22 @@ function editar_registro2()
 }
 function editar_registro3()
 {
-  $conexion = mysqli_connect("localhost", "root", "", "CMIE");
-  extract($_POST);
-  $consulta = "UPDATE user SET unidad = '$unidad' WHERE id = '$id' ";
-  mysqli_query($conexion, $consulta);
+    if (isset($_POST['unidadId']) && isset($_POST['divisionId'])) {
+        $unidadId = trim($_POST['unidadId']);
+        $divisionId = trim($_POST['divisionId']);
 
-  if (isset($_POST['coeficiente'])) {
-    header('Location: ../vista_jemge/coeficiente_de_efectividad.php?id=' . $unidad);
-  }
-  if (isset($_POST['evaluar'])) {
-    header('Location: ../vista_jemge/evaluar_factores.php?id=' . $unidad);
-  }
-
+        if (isset($_POST['coeficiente'])) {
+            header('Location: ../vista_jemge/coeficiente_de_efectividad.php?id=' . $unidadId);
+        }
+        if (isset($_POST['evaluar'])) {
+            header('Location: ../vista_jemge/evaluar_factores.php?id=' . $unidadId);
+        }
+    } else {
+        // Los valores no están presentes en el formulario
+        echo "Los valores de unidadId y/o divisionId no se enviaron correctamente.";
+    }
 }
+
 
 function editar_registro()
 {

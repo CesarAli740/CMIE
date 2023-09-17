@@ -342,10 +342,53 @@ $nombre_division = $_SESSION['division'];
         <?php
       } else if ($rol == 10) {
         ?>
+
               <button type="button" onclick="window.location.href ='../vista_jemge/principal.php'"
                 class="active">Inicio</button>
-              <button type="button" onclick="window.location.href ='../vista_jemge/ranking.php'"
-                class="active">Ranking</button>
+              <button type="button" onclick="window.location.href ='../vista_jemge/ranking.php'" class="active">Ranking
+                Unidades</button>
+              <button type="button" onclick="ejecutarAcciones()" class="active">Rankig Divisiones</button>
+
+              <script>
+                function ejecutarAcciones() {
+                  // Realiza la primera acción
+                  window.location.href = '../vista_jemge/rankingD.php';
+                }
+              </script>
+          <?php
+          $conexion = mysqli_connect("localhost", "root", "", "CMIE");
+
+          if (!$conexion) {
+            die("Error en la conexión: " . mysqli_connect_error());
+          }
+
+          // Consulta SQL para calcular el promedio de las notas por división en la tabla "unidad"
+          $sql_calculo_promedio = "SELECT division, AVG(nota) as promedio_notas FROM unidad GROUP BY division";
+
+          $resultado_calculo = mysqli_query($conexion, $sql_calculo_promedio);
+
+          if (!$resultado_calculo) {
+            die("Error al calcular el promedio de las notas: " . mysqli_error($conexion));
+          }
+
+          // Consulta SQL para actualizar la tabla "división" con los promedios calculados
+          $sql_actualizacion = "
+    UPDATE division AS d
+    JOIN (
+        SELECT division, AVG(nota) as promedio_notas FROM unidad GROUP BY division
+    ) AS u
+    ON d.id = u.division
+    SET d.nota = u.promedio_notas";
+
+          $resultado_actualizacion = mysqli_query($conexion, $sql_actualizacion);
+
+          if (!$resultado_actualizacion) {
+            die("Error al actualizar la tabla 'división': " . mysqli_error($conexion));
+          }
+
+          ?>
+
+
         <?php
       }
       ?>
