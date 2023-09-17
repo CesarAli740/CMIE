@@ -58,6 +58,26 @@ if ($validar == null || $validar = '') {
     .ranking th {
       background-color: transparent;
     }
+
+    .contenedor {
+      display: flex;
+    }
+
+    .elemento {
+      flex: 1;
+      margin: 50px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Estilos para pantallas pequeñas (768px o menos) */
+    @media (max-width: 1024px) {
+      .contenedor {
+        flex-direction: column;
+        align-items: center;
+        /* Cambia la dirección de flexión a columna */
+      }
+    }
   </style>
   <div class="titulo_ranking">
     <?php
@@ -72,7 +92,8 @@ if ($validar == null || $validar = '') {
       <?php echo $div_nombre; ?>
     </h1>
   </div>
-  <div class="ranking">
+  <div class="contenedor">
+  <div class="ranking elemento">
     <table>
       <tr>
         <th>Posición</th>
@@ -100,13 +121,15 @@ if ($validar == null || $validar = '') {
           $posicion++;
         }
       }
+
       ?>
     </table>
   </div>
 
 
-  <div style="position: center; margin: 0 auto; max-width: 50rem;">
+  <div class="elemento">
     <canvas id="myChart"></canvas>
+  </div>
   </div>
 
   <script>
